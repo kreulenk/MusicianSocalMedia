@@ -20,28 +20,8 @@ const Icon = ({ name }) => (
   <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
 );
 
-export default class SelectPhotoScreen extends Component {
+export default class SelectRecordScreen extends Component {
   state = {};
-
-  _selectPhoto = async () => {
-    const status = await getPermission(Permissions.CAMERA_ROLL);
-    if (status) {
-      const result = await ImagePicker.launchImageLibraryAsync(options);
-      if (!result.cancelled) {
-        this.props.navigation.navigate('NewPost', { image: result.uri });
-      }
-    }
-  };
-
-  _takePhoto = async () => {
-    const status = await getPermission(Permissions.CAMERA);
-    if (status) {
-      const result = await ImagePicker.launchCameraAsync(options);
-      if (!result.cancelled) {
-        this.props.navigation.navigate('NewPost', { image: result.uri });
-      }
-    }
-  };
 
   _takerecording = async () => {
     const status = await getPermission(Permissions.AUDIO_RECORDING);
@@ -51,14 +31,21 @@ export default class SelectPhotoScreen extends Component {
     }
   };
 
+  // _stoprecording = async () => {
+  //   const status = await getPermission(Permissions.AUDIO_RECORDING);
+  //   if (status) {
+  //       const return = await recording.stopAndUnloadAsync();
+  //       if (!result.cancelled) {
+  //         this.props.navigation.navigate('NewPost', { image: result.uri });
+  //       }
+  //   }
+  // };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text onPress={this._selectPhoto} style={styles.text}>
-          Select Photo
-        </Text>
-        <Text onPress={this._takePhoto} style={styles.text}>
-          Take Photo
+        <Text onPress={this._takeRecording} style={styles.text}>
+          Start Recording
         </Text>
       </View>
     );

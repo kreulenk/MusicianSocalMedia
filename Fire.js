@@ -13,12 +13,12 @@ const collectionName = 'snack-SJucFknGX';
 class Fire {
   constructor() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyAQan8_IJ6fY6F8E06FMDKVbWlrdI75mvA',
-      authDomain: 'instahamm-b09ce.firebaseapp.com',
-      databaseURL: 'https://instahamm-b09ce.firebaseio.com',
-      projectId: 'instahamm-b09ce',
-      storageBucket: 'instahamm-b09ce.appspot.com',
-      messagingSenderId: '716190466061',
+      apiKey: "AIzaSyCLfKxr4dmaN2jeNaOQ3T3wxAOB5-4tkcA",
+      authDomain: "chat-app-c6352.firebaseapp.com",
+      databaseURL: "https://chat-app-c6352.firebaseio.com",
+      projectId: "chat-app-c6352",
+      storageBucket: "chat-app-c6352.appspot.com",
+      messagingSenderId: "337661148506"
     });
     // Some nonsense...
     firebase.firestore().settings({ timestampsInSnapshots: true });

@@ -9,7 +9,7 @@ export default class NewPostScreen extends React.Component<Props> {
   static navigationOptions = ({ navigation }) => ({
     title: 'New Post',
     headerRight: (
-      <HeaderButtons IconComponent={Ionicons} iconSize={23} color="black">
+      <HeaderButtons IconComponent={Ionicons} iconSize={23} color="#ff0000">
         <HeaderButtons.Item
           title="Share"
           onPress={() => {
@@ -40,7 +40,7 @@ export default class NewPostScreen extends React.Component<Props> {
         <TextInput
           multiline
           style={{ flex: 1, paddingHorizontal: 16 }}
-          placeholder="Add a neat description..."
+          placeholder="Add a description..."
           onChangeText={text => {
             this.setState({ text });
             this.props.navigation.setParams({ text });

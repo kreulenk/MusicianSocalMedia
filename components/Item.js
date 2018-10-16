@@ -31,7 +31,7 @@ export default class Item extends React.Component {
         <Image
           resizeMode="contain"
           style={{
-            backgroundColor: '#D8D8D8',
+            backgroundColor: '#ffffff',
             width: '100%',
             aspectRatio: aspect,
           }}
@@ -62,18 +62,15 @@ const Header = ({ name, image }) => (
 );
 
 const Icon = ({ name }) => (
-  <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="black" />
+  <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
 );
 
 const IconBar = () => (
-  <View style={styles.row}>
     <View style={styles.row}>
-      <Icon name="ios-heart-outline" />
-      <Icon name="ios-chatbubbles-outline" />
-      <Icon name="ios-send-outline" />
+      <Icon name="ios-thumbs-up" />
+      <Icon name="ios-chatboxes" />
+      <Icon name="ios-play" />
     </View>
-    <Icon name="ios-bookmark-outline" />
-  </View>
 );
 
 const styles = StyleSheet.create({

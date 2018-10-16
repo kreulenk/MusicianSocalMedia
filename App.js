@@ -9,6 +9,7 @@ import tabBarIcon from './utils/tabBarIcon';
 import FeedScreen from './screens/FeedScreen';
 import NewPostScreen from './screens/NewPostScreen';
 import SelectPhotoScreen from './screens/SelectPhotoScreen';
+import SelectRecordScreen from './screens/SelectRecordScreen';
 
 // Create our main tab navigator for moving between the Feed and Photo screens
 const navigator = createBottomTabNavigator(
@@ -26,7 +27,14 @@ const navigator = createBottomTabNavigator(
     Photo: {
       screen: SelectPhotoScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('add-circle'),
+        tabBarIcon: tabBarIcon('add-box'),
+      },
+    },
+
+    Record: {
+      screen: SelectRecordScreen,
+      navigationOptions: {
+        tabBarIcon: tabBarIcon('mic'),
       },
     },
   },
@@ -34,8 +42,8 @@ const navigator = createBottomTabNavigator(
     // We want to hide the labels and set a nice 2-tone tint system for our tabs
     tabBarOptions: {
       showLabel: false,
-      activeTintColor: 'black',
-      inactiveTintColor: 'gray',
+      activeTintColor: 'red',
+      inactiveTintColor: 'black',
     },
   },
 );
@@ -46,7 +54,7 @@ const stackNavigator = createStackNavigator(
     Main: {
       screen: navigator,
       // Set the title for our app when the tab bar screen is present
-      navigationOptions: { title: 'Instaham 🐷' },
+      navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
     },
     // This screen will not have a tab bar
     NewPost: NewPostScreen,
