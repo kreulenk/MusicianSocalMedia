@@ -20,8 +20,8 @@ class Main extends React.Component {
   onPress = () =>
     this.props.navigation.navigate('Chat', { name: this.state.name });
 
-  onChangeText = name => this.setState({ name });
-  onChangeText = password => this.setState({ password });
+  onChangeName = name => this.setState({ name });
+  onChangePassword = password => this.setState({ password });
 
   render() {
     return (
@@ -30,7 +30,7 @@ class Main extends React.Component {
         <TextInput
           style={styles.nameInput}
           placeHolder="John Cena"
-          onChangeText={this.onChangeText}
+          onChangeText={this.onChangeName}
           value={this.state.name}
         />
         <Text style={styles.title}>Enter your password:</Text>
@@ -38,8 +38,8 @@ class Main extends React.Component {
           style={styles.nameInput}
           placeHolder="John Cena"
           secureTextEntry={true}
-          onChangeText={this.onChangeText}
-          value={this.state.name}
+          onChangeText={this.onChangePassword}
+          value={this.state.password}
         />
         <TouchableOpacity onPress={this.onPress}>
           <Text style={styles.buttonText}>Next</Text>
