@@ -10,44 +10,67 @@ export default class Item extends React.Component {
 
   componentDidMount() {
     if (!this.props.imageWidth) {
-      // Get the size of the web image
-      Image.getSize(this.props.image, (width, height) => {
-        this.setState({ width, height });
-      });
+      if (this.props.image) {
+        // Get the size of the web image
+        Image.getSize(this.props.image, (width, height) => {
+          this.setState({ width, height });
+        });
+      }
     }
   }
 
   render() {
     const { text, name, imageWidth, imageHeight, uid, image } = this.props;
 
-    // Reduce the name to something
-    const imgW = imageWidth || this.state.width;
-    const imgH = imageHeight || this.state.height;
-    const aspect = imgW / imgH || 1;
+    if (image)
+    {
+      // Reduce the name to something
+      const imgW = imageWidth || this.state.width;
+      const imgH = imageHeight || this.state.height;
+      const aspect = imgW / imgH || 1;
 
-    return (
-      <View>
-        <Header image={{ uri: image }} name={name} />
-        <Image
-          resizeMode="contain"
-          style={{
-            backgroundColor: '#ffffff',
-            width: '100%',
-            aspectRatio: aspect,
-          }}
-          source={{ uri: image }}
-        />
-        <Metadata name={name} description={text} />
-      </View>
-    );
+      return (
+        <View>
+          <Header image={{ uri: image }} name={name} />
+          <Image
+            resizeMode="contain"
+            style={{
+              backgroundColor: '#ffffff',
+              width: '100%',
+              aspectRatio: aspect,
+            }}
+            source={{ uri: image }}
+          />
+          <Metadata name={name} description={text} />
+        </View>
+      );
+    }
+    else
+    {
+      return (
+        <View>
+          <HeaderNoImage name={name} />
+          <Metadata name={name} description={text} />
+        </View>
+      );
+    }
   }
 }
 
 const Metadata = ({ name, description }) => (
   <View style={styles.padding}>
-    <IconBar />
-    <Text style={styles.text}>{name}</Text>
     <Text style={styles.subtitle}>{description}</Text>
+    <IconBar />
+  </View>
+);
+
+const HeaderNoImage = ({ name }) => (
+  <View style={[styles.row, styles.padding]}>
+    <View style={styles.row}>
+      {/* Add some icon here */}
+      <Text style={styles.text}>{name}</Text>
+    </View>
+    <Icon name="ios-more" />
   </View>
 );
 

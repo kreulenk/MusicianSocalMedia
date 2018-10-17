@@ -18,6 +18,9 @@ export default class NewPostScreen extends React.Component<Props> {
             if (text && image) {
               navigation.goBack();
               Fire.shared.post({ text: text.trim(), image });
+            } else if (text) {
+              navigation.goBack();
+              Fire.shared.post({ text: text.trim() });
             } else {
               alert('Need valid description');
             }
@@ -31,22 +34,40 @@ export default class NewPostScreen extends React.Component<Props> {
 
   render() {
     const { image } = this.props.navigation.state.params;
-    return (
-      <View style={{ padding: 10, flexDirection: 'row' }}>
-        <Image
-          source={{ uri: image }}
-          style={{ resizeMode: 'contain', aspectRatio: 1, width: 72 }}
-        />
-        <TextInput
-          multiline
-          style={{ flex: 1, paddingHorizontal: 16 }}
-          placeholder="Add a description..."
-          onChangeText={text => {
-            this.setState({ text });
-            this.props.navigation.setParams({ text });
-          }}
-        />
-      </View>
-    );
+    if (image) {
+      return (
+        <View style={{ padding: 10, flexDirection: 'row' }}>
+          <Image
+            source={{ uri: image }}
+            style={{ resizeMode: 'contain', aspectRatio: 1, width: 72 }}
+          />
+          <TextInput
+            multiline
+            style={{ flex: 1, paddingHorizontal: 16 }}
+            placeholder="Add a description..."
+            onChangeText={text => {
+              this.setState({ text });
+              this.props.navigation.setParams({ text });
+            }}
+          />
+        </View>
+      );
+    }
+    else
+    {
+      return (
+        <View style={{ padding: 10, flexDirection: 'row' }}>
+          <TextInput
+            multiline
+            style={{ flex: 1, paddingHorizontal: 16 }}
+            placeholder="Add a description..."
+            onChangeText={text => {
+              this.setState({ text });
+              this.props.navigation.setParams({ text });
+            }}
+          />
+        </View>
+      );
+    }
   }
 }

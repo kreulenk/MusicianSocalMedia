@@ -23,6 +23,10 @@ const Icon = ({ name }) => (
 export default class SelectPhotoScreen extends Component {
   state = {};
 
+  _simplePost = async () => {
+    this.props.navigation.navigate('NewPost', {});
+  };
+
   _selectPhoto = async () => {
     const status = await getPermission(Permissions.CAMERA_ROLL);
     if (status) {
@@ -54,6 +58,9 @@ export default class SelectPhotoScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text onPress={this._simplePost} style={styles.text}>
+          New Simple Post
+        </Text>
         <Text onPress={this._selectPhoto} style={styles.text}>
           Select Photo
         </Text>

@@ -73,20 +73,31 @@ class Fire {
 
   post = async ({ text, image: localUri }) => {
     try {
-      const { uri: reducedImage, width, height } = await shrinkImageAsync(
-        localUri,
-      );
+      if (localUri) {
+        const { uri: reducedImage, width, height } = await shrinkImageAsync(
+          localUri,
+        );
 
-      const remoteUri = await this.uploadPhotoAsync(reducedImage);
-      this.collection.add({
-        text,
-        uid: this.uid,
-        timestamp: this.timestamp,
-        imageWidth: width,
-        imageHeight: height,
-        image: remoteUri,
-        user: getUserInfo(),
-      });
+        const remoteUri = await this.uploadPhotoAsync(reducedImage);
+        this.collection.add({
+          text,
+          uid: this.uid,
+          timestamp: this.timestamp,
+          imageWidth: width,
+          imageHeight: height,
+          image: remoteUri,
+          user: getUserInfo(),
+        });
+      }
+      else
+      {
+        this.collection.add({
+          text,
+          uid: this.uid,
+          timestamp: this.timestamp,
+          user: getUserInfo(),
+        });
+      }
     } catch ({ message }) {
       alert(message);
     }
