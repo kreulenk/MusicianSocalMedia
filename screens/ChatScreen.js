@@ -22,8 +22,8 @@ const Icon = ({ name }) => (
   <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
 );
 
-export default class ChatScreen extends Component {
-  state = {};
+export default class ChatScreen extends Component<Props> {
+  state = { name: '' };
   static navigationOptions = ({ navigation }) => ({
   title: (navigation.state.params || {}).name || 'Chat!',
   });
@@ -31,6 +31,14 @@ export default class ChatScreen extends Component {
   state = {
     messages: [],
   };
+
+  get user() {
+    return {
+      name: this.props.navigation.state.params.name,
+      _id: Fire.shared.uid,
+    };
+  }
+
   render() {
     return (
       <GiftedChat
@@ -39,6 +47,16 @@ export default class ChatScreen extends Component {
         user={this.user}
       />
     );
+  }
+  componentDidMount() {
+  Fire.shared.on(message =>
+    this.setState(previousState => ({
+      messages: GiftedChat.append(previousState.messages, message),
+    }))
+  );
+  }
+  componentWillUnmount() {
+    Fire.shared.off();
   }
 }
 

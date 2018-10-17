@@ -11,6 +11,7 @@ import NewPostScreen from './screens/NewPostScreen';
 import SelectPhotoScreen from './screens/SelectPhotoScreen';
 import SelectRecordScreen from './screens/SelectRecordScreen';
 import ChatScreen from './screens/ChatScreen';
+import MainScreen from './screens/MainScreen';
 
 // Create our main tab navigator for moving between the Feed and Photo screens
 const navigator = createBottomTabNavigator(
@@ -45,7 +46,6 @@ const navigator = createBottomTabNavigator(
         tabBarIcon: tabBarIcon('chat-bubble'),
       },
     },
-
   },
   {
     // We want to hide the labels and set a nice 2-tone tint system for our tabs
@@ -60,6 +60,10 @@ const navigator = createBottomTabNavigator(
 // Create the navigator that pushes high-level screens like the `NewPost` screen.
 const stackNavigator = createStackNavigator(
   {
+    Login: {
+        screen: MainScreen,
+        navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+    },
     Main: {
       screen: navigator,
       // Set the title for our app when the tab bar screen is present
