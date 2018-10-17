@@ -70,7 +70,7 @@ const stackNavigator = createStackNavigator(
       navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
     },
     // This screen will not have a tab bar
-    NewPost: NewPostScreen,
+    //NewPost: NewPostScreen,
   },
   {
     cardStyle: { backgroundColor: 'white' },

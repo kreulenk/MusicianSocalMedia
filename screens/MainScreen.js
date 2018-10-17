@@ -14,20 +14,30 @@ class Main extends React.Component {
 
   state = {
     name: '',
+    password: '',
   };
 
   onPress = () =>
     this.props.navigation.navigate('Chat', { name: this.state.name });
 
   onChangeText = name => this.setState({ name });
+  onChangeText = password => this.setState({ password });
 
   render() {
     return (
       <View>
-        <Text style={styles.title}>Enter your name:</Text>
+        <Text style={styles.title}>Enter your username:</Text>
         <TextInput
           style={styles.nameInput}
           placeHolder="John Cena"
+          onChangeText={this.onChangeText}
+          value={this.state.name}
+        />
+        <Text style={styles.title}>Enter your password:</Text>
+        <TextInput
+          style={styles.nameInput}
+          placeHolder="John Cena"
+          secureTextEntry={true}
           onChangeText={this.onChangeText}
           value={this.state.name}
         />
@@ -44,11 +54,12 @@ const styles = StyleSheet.create({
   title: {
     marginTop: offset,
     marginLeft: offset,
-    fontSize: offset,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'red',
   },
   nameInput: {
     height: offset * 2,
-
     margin: offset,
     paddingHorizontal: offset,
     borderColor: 'red',
@@ -56,7 +67,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     marginLeft: offset,
-    fontSize: offset,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'red',
   },
 });
 
