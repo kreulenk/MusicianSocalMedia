@@ -30,14 +30,15 @@ export default class Item extends React.Component {
       const aspect = imgW / imgH || 1;
 
       return (
-        <View>
-          <Header image={{ uri: image }} name={name} />
+        <View style={[styles.border]}>
+          <HeaderNoImage name={name} />
           <Image
             resizeMode="contain"
             style={{
               backgroundColor: '#ffffff',
               width: '100%',
               aspectRatio: aspect,
+              marginBottom: 12
             }}
             source={{ uri: image }}
           />
@@ -48,7 +49,7 @@ export default class Item extends React.Component {
     else
     {
       return (
-        <View>
+        <View style={[styles.border]}>
           <HeaderNoImage name={name} />
           <Metadata name={name} description={text} />
         </View>
@@ -58,29 +59,24 @@ export default class Item extends React.Component {
 }
 
 const Metadata = ({ name, description }) => (
-  <View style={styles.padding}>
-    <Text style={styles.subtitle}>{description}</Text>
+  <View>
+    <Text style={[styles.subtitle, styles.description_padding]}>{description}</Text>
     <IconBar />
   </View>
 );
 
 const HeaderNoImage = ({ name }) => (
-  <View style={[styles.row, styles.padding]}>
-    <View style={styles.row}>
-      {/* Add some icon here */}
-      <Text style={styles.text}>{name}</Text>
-    </View>
-    <Icon name="ios-more" />
+  <View style={[styles.header_row, styles.header_padding]}>
+    <Text style={styles.text}>{name}</Text>
   </View>
 );
 
 const Header = ({ name, image }) => (
-  <View style={[styles.row, styles.padding]}>
-    <View style={styles.row}>
+  <View style={[styles.header_row, styles.header_padding]}>
+    <View style={styles.header_row}>
       <Image style={styles.avatar} source={image} />
       <Text style={styles.text}>{name}</Text>
     </View>
-    <Icon name="ios-more" />
   </View>
 );
 
@@ -89,7 +85,7 @@ const Icon = ({ name }) => (
 );
 
 const IconBar = () => (
-    <View style={styles.row}>
+    <View style={styles.actions_row}>
       <Icon name="ios-thumbs-up" />
       <Icon name="ios-chatboxes" />
       <Icon name="ios-play" />
@@ -97,17 +93,35 @@ const IconBar = () => (
 );
 
 const styles = StyleSheet.create({
-  text: { fontWeight: '600' },
+  text: { 
+    fontWeight: '600',
+    fontSize: 16
+  },
   subtitle: {
     opacity: 0.8,
+    fontSize: 16
   },
-  row: {
+  header_row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  padding: {
-    padding,
+  actions_row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingBottom: 15,
+  },
+  header_padding: {
+    paddingLeft: 12,
+    paddingTop: 15,
+    paddingBottom: 12
+  },
+  description_padding: {
+    paddingLeft: 12,
+    paddingTop: 0,
+    paddingBottom: 8
   },
   avatar: {
     aspectRatio: 1,
@@ -120,4 +134,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     marginRight: padding,
   },
+  border: {
+    borderBottomWidth: 4,
+  }
 });
