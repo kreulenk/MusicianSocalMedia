@@ -88,7 +88,7 @@ const IconBar = () => (
     <View style={styles.actions_row}>
       <Icon name="ios-thumbs-up" />
       <Icon name="ios-chatboxes" />
-      <Icon name="ios-play" />
+      <Icon name="ios-more" />
     </View>
 );
 
