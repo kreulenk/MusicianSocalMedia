@@ -8,7 +8,7 @@ const firebase = require('firebase');
 // Required for side-effects
 require('firebase/firestore');
 
-const collectionName = 'snack-SJucFknGX';
+const collectionName = 'soundmatch-c4d7e';
 
 class Fire {
   constructor() {
