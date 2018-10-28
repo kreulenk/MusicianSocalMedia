@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
 import { LayoutAnimation, RefreshControl } from 'react-native';
-
+import seekBar from '../utils/SeekBar';
+import playbackControls from '../utils/PlaybackControls';
 import List from '../components/List';
 import Fire from '../Fire';
 
