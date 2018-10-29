@@ -23,22 +23,22 @@ const PlaybackControls = ({
   <View style={styles.container}>
     <TouchableOpacity activeOpacity={0.0} onPress={onPressShuffle}>
       <Image style={[styles.secondaryControl, shuffleOn ? [] : styles.off]}
-        source={require('C:/Users/dtrem/Documents/SoundMatch/SoundMatch_app/assets/images/baseline_shuffle_black_24dp.png')}/>
+        source={require('../assets/images/baseline_shuffle_black_24dp.png')}/>
     </TouchableOpacity>
     <View style={{width: 40}} />
     <TouchableOpacity onPress={onBack}>
-      <Image source={require('C:/Users/dtrem/Documents/SoundMatch/SoundMatch_app/assets/images/baseline_skip_previous_black_24dp.png')}/>
+      <Image source={require('../assets/images/baseline_skip_previous_black_24dp.png')}/>
     </TouchableOpacity>
     <View style={{width: 20}} />
     {!paused ?
       <TouchableOpacity onPress={onPressPause}>
         <View style={styles.playButton}>
-          <Image source={require('C:/Users/dtrem/Documents/SoundMatch/SoundMatch_app/assets/images/baseline_pause_black_24dp.png')}/>
+          <Image source={require('../assets/images/baseline_pause_black_24dp.png')}/>
         </View>
       </TouchableOpacity> :
       <TouchableOpacity onPress={onPressPlay}>
         <View style={styles.playButton}>
-          <Image source={require('C:/Users/dtrem/Documents/SoundMatch/SoundMatch_app/assets/images/baseline_play_arrow_black_24dp.png')}/>
+          <Image source={require('../assets/images/baseline_play_arrow_black_24dp.png')}/>
         </View>
       </TouchableOpacity>
     }
@@ -46,12 +46,12 @@ const PlaybackControls = ({
     <TouchableOpacity onPress={onForward}
       disabled={forwardDisabled}>
       <Image style={[forwardDisabled && {opacity: 0.3}]}
-        source={require('C:/Users/dtrem/Documents/SoundMatch/SoundMatch_app/assets/images/baseline_skip_next_black_24dp.png')}/>
+        source={require('../assets/images/baseline_skip_next_black_24dp.png')}/>
     </TouchableOpacity>
     <View style={{width: 40}} />
     <TouchableOpacity activeOpacity={0.0} onPress={onPressRepeat}>
       <Image style={[styles.secondaryControl, repeatOn ? [] : styles.off]}
-        source={require('C:/Users/dtrem/Documents/SoundMatch/SoundMatch_app/assets/images/baseline_replay_black_24dp.png')}/>
+        source={require('../assets/images/baseline_replay_black_24dp.png')}/>
     </TouchableOpacity>
   </View>
 );
