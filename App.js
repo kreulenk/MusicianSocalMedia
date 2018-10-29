@@ -1,10 +1,20 @@
 // Import React Navigation
+import React, { Component } from 'react';
+
+import {
+  View,
+  Text,
+} from 'react-native';
+
 import {
   createBottomTabNavigator,
   createStackNavigator,
+  Sound,
 } from 'react-navigation';
 
 import tabBarIcon from './utils/tabBarIcon';
+import seekBar from './utils/SeekBar';
+import playbackControls from './utils/PlaybackControls';
 // Import the screens
 import FeedScreen from './screens/FeedScreen';
 import NewPostScreen from './screens/NewPostScreen';
@@ -12,6 +22,7 @@ import SelectPhotoScreen from './screens/SelectPhotoScreen';
 import SelectRecordScreen from './screens/SelectRecordScreen';
 import ChatScreen from './screens/ChatScreen';
 import MainScreen from './screens/MainScreen';
+import PlayScreen from './screens/PlayScreen';
 
 // Create our main tab navigator for moving between the Feed and Photo screens
 const navigator = createBottomTabNavigator(
@@ -44,6 +55,13 @@ const navigator = createBottomTabNavigator(
       screen: ChatScreen,
       navigationOptions: {
         tabBarIcon: tabBarIcon('chat-bubble'),
+      },
+    },
+
+    Player: {
+      screen: PlayScreen,
+      navigationOptions: {
+        tabBarIcon: tabBarIcon('home'),
       },
     },
   },

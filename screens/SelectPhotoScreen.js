@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Constants, ImagePicker, Audio, Permissions } from 'expo';
+import { Constants, ImagePicker, Audio, Permissions, Camera } from 'expo';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 
 import getPermission from '../utils/getPermission';
 
@@ -50,8 +51,8 @@ export default class SelectPhotoScreen extends Component {
   _takerecording = async () => {
     const status = await getPermission(Permissions.AUDIO_RECORDING);
     if (status) {
-        await recording.prepareToRecordAsync(options);
-        await recording.startAsync();
+        await this.props.prepareToRecordAsync(options);
+        await this.props.startAsync();
     }
   };
 
