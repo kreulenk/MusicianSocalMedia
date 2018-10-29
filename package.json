@@ -15,6 +15,11 @@
     "react-navigation": "2.6.0",
     "react-navigation-header-buttons": "^1.2.1",
     "rn-multiple-choice": "0.0.5",
+    "react-native-slider": "^0.11.0",
+    "react-native-video": "^3.2.1",
+    "react-navigation": "2.6.0",
+    "react-navigation-header-buttons": "^1.2.1",
+    "save": "^2.3.2",
     "uuid": "3.3.2",
     "yarn": "^1.10.1"
   }

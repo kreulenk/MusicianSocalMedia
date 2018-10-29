@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import playbackControls from '../utils/PlaybackControls';
 
 export default class Footer extends React.Component {
   onPress = () => {
@@ -16,6 +17,7 @@ export default class Footer extends React.Component {
       >
         <Text style={styles.text}>Load More...</Text>
       </TouchableHighlight>
+
     );
   }
 }
