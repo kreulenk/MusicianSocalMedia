@@ -12,6 +12,7 @@ export default class Player extends Component {
     super(props);
 
     this.state = {
+      shouldPlay: false,
       paused: true,
       totalLength: 1,
       currentPosition: 0,
@@ -79,7 +80,7 @@ export default class Player extends Component {
     const track = this.props.tracks[this.state.selectedTrack];
     const video = this.state.isChanging ? null : (
       <Video source={{uri: 'http://russprince.com/hobbies/files/13%20Beethoven%20-%20Fur%20Elise.mp3'}} // Can be a URL or a local file.
-        shouldPlay
+        shouldPlay={this.state.shouldPlay}
         ref="audioElement"
         paused={this.state.paused}               // Pauses playback entirely.
         resizeMode="cover"           // Fill the whole screen at aspect ratio.
@@ -101,8 +102,10 @@ export default class Player extends Component {
           shuffleOn={this.state.shuffleOn}
           forwardDisabled={this.state.selectedTrack === this.props.tracks.length - 1}
           onPressShuffle={() => this.setState({shuffleOn: !this.state.shuffleOn})}
-          onPressPlay={() => this.setState({paused: false})}
-          onPressPause={() => this.setState({paused: true})}
+          onPressPlay={() => this.setState({shouldPlay: true,
+            paused: false})}
+          onPressPause={() => this.setState({shouldPlay: false,
+            paused: true})}
           onBack={this.onBack.bind(this)}
           onForward={this.onForward.bind(this)}
           paused={this.state.paused}/>
