@@ -9,14 +9,12 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import MultipleChoice from 'rn-multiple-choice'
 
-import  PropTypes from 'prop-types';
-
 
 export default class SurveyScreen extends React.Component {
     static navigationOptions ={
         title: 'Survey',
 
-    }
+    };
     onPress = () =>
         this.props.navigation.navigate('Feed');
 
