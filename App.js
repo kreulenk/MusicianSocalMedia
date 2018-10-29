@@ -68,7 +68,7 @@ const navigator = createBottomTabNavigator(
         navigationOptions: {
             tabBarIcon: tabBarIcon('help'),
         },
-    }
+    },
 
     Player: {
       screen: PlayScreen,
