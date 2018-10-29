@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import SeekBar from '../utils/SeekBar';
 import PlaybackControls from '../utils/PlaybackControls';
-import Video from 'react-native-video';
+import {Video} from 'expo';
 
 export default class Player extends Component {
   constructor(props) {
@@ -78,7 +78,8 @@ export default class Player extends Component {
   render() {
     const track = this.props.tracks[this.state.selectedTrack];
     const video = this.state.isChanging ? null : (
-      <Video source={{uri: track.audioUrl}} // Can be a URL or a local file.
+      <Video source={{uri: 'http://russprince.com/hobbies/files/13%20Beethoven%20-%20Fur%20Elise.mp3'}} // Can be a URL or a local file.
+        shouldPlay
         ref="audioElement"
         paused={this.state.paused}               // Pauses playback entirely.
         resizeMode="cover"           // Fill the whole screen at aspect ratio.
@@ -93,11 +94,7 @@ export default class Player extends Component {
 
     return (
       <View style={styles.container}>
-        <SeekBar
-          onSeek={this.seek.bind(this)}
-          trackLength={this.state.totalLength}
-          onSlidingStart={() => this.setState({paused: true})}
-          currentPosition={this.state.currentPosition} />
+        
         <PlaybackControls
           onPressRepeat={() => this.setState({repeatOn : !this.state.repeatOn})}
           repeatOn={this.state.repeatOn}
@@ -118,7 +115,7 @@ export default class Player extends Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: 'rgb(4,4,4)',
+    backgroundColor: 'white',
   },
   audioElement: {
     height: 0,
