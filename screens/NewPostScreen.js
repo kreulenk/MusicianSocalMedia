@@ -17,10 +17,10 @@ export default class NewPostScreen extends React.Component<Props> {
             const image = navigation.getParam('image');
             if (text && image) {
               navigation.goBack();
-              Fire.shared.post({ text: text.trim(), image });
+              Fire.post({ text: text.trim(), image });
             } else if (text) {
               navigation.goBack();
-              Fire.shared.post({ text: text.trim() });
+              Fire.post({ text: text.trim() });
             } else {
               alert('Need valid description');
             }

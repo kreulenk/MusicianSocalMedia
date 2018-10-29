@@ -22,14 +22,20 @@ class Fire {
     });
     // Some nonsense...
     firebase.firestore().settings({ timestampsInSnapshots: true });
-
-    // Listen for auth
-    firebase.auth().onAuthStateChanged(async user => {
-      if (!user) {
-        await firebase.auth().signInAnonymously();
-      }
-    });
   }
+
+  //Sign in
+  signIn = async ({username, password}) => {
+      firebase.auth().signInWithEmailAndPassword(username, password).then(user => console.log(user)).catch(function(error) {
+          // Handle Errors here.
+          console.log(error.message);
+          // ...
+      });
+  };
+
+  currentUser = async () => {
+    return firebase.auth().currentUser;
+  };
 
   // Download Data
   getPaged = async ({ size, start }) => {
@@ -158,4 +164,4 @@ class Fire {
 }
 
 Fire.shared = new Fire();
-export default Fire;
+export default Fire.shared;

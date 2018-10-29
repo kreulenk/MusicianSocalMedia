@@ -1,4 +1,5 @@
 import React from 'react';
+import Fire from '../Fire'
 import {
   StyleSheet,
   Text,
@@ -17,8 +18,12 @@ class Main extends React.Component {
     password: '',
   };
 
-  onPress = () =>
-    this.props.navigation.navigate('Chat', { name: this.state.name });
+  onPress = () => {
+      Fire.signIn({username: this.state.name, password: this.state.password}).then(user => {
+          console.log("user: ", user);
+          this.props.navigation.navigate('Chat', { name: this.state.name });
+      }).catch(err => console.log("there was error", err));
+  };
 
   onChangeName = name => this.setState({ name });
   onChangePassword = password => this.setState({ password });

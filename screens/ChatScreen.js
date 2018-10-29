@@ -35,7 +35,7 @@ export default class ChatScreen extends Component {
   get user() {
     return {
       name: this.props.navigation.state.params.name,
-      _id: Fire.shared.uid,
+      _id: Fire.uid,
     };
   }
 
@@ -43,20 +43,20 @@ export default class ChatScreen extends Component {
     return (
       <GiftedChat
         messages={this.state.messages}
-        onSend={Fire.shared.send}
+        onSend={Fire.send}
         user={this.user}
       />
     );
   }
   componentDidMount() {
-  Fire.shared.on(message =>
+  Fire.on(message =>
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, message),
     }))
   );
   }
   componentWillUnmount() {
-    Fire.shared.off();
+    Fire.off();
   }
 }
 
