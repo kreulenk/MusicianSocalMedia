@@ -22,7 +22,11 @@ import SelectPhotoScreen from './screens/SelectPhotoScreen';
 import SelectRecordScreen from './screens/SelectRecordScreen';
 import ChatScreen from './screens/ChatScreen';
 import MainScreen from './screens/MainScreen';
+
+import SurveyScreen from './screens/SurveyScreen';
+
 import PlayScreen from './screens/PlayScreen';
+
 
 // Create our main tab navigator for moving between the Feed and Photo screens
 const navigator = createBottomTabNavigator(
@@ -58,12 +62,21 @@ const navigator = createBottomTabNavigator(
       },
     },
 
+
+    Survey: {
+        screen: SurveyScreen,
+        navigationOptions: {
+            tabBarIcon: tabBarIcon('help'),
+        },
+    }
+
     Player: {
       screen: PlayScreen,
       navigationOptions: {
         tabBarIcon: tabBarIcon('home'),
       },
     },
+
   },
   {
     // We want to hide the labels and set a nice 2-tone tint system for our tabs
