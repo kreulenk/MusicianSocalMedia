@@ -18,7 +18,7 @@ class Main extends React.Component {
   };
 
   onPress = () =>
-    this.props.navigation.navigate('Chat', { name: this.state.name });
+    this.props.navigation.navigate('Survey', { name: this.state.name });
 
   onChangeName = name => this.setState({ name });
   onChangePassword = password => this.setState({ password });
