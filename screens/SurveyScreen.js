@@ -4,6 +4,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    ScrollView,
     View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,7 +21,7 @@ export default class SurveyScreen extends React.Component {
 
     render() {
         return (
-            <View>
+            <ScrollView>
                 <Text style = {styles.title}> Which description best describes you?</Text>
                 <MultipleChoice
                     options={[
@@ -31,7 +32,7 @@ export default class SurveyScreen extends React.Component {
                         ]}
                     maxSelectedOptions={3}
                     />
-                <Text style = {styles.title}> Who are you looking to collaboate with?</Text>
+                <Text style = {styles.title}> Who are you looking to collaborate with?</Text>
                 <MultipleChoice
                     options={[
                         'Producer',
@@ -56,7 +57,7 @@ export default class SurveyScreen extends React.Component {
                     <Text style={styles.buttonText}> Done!</Text>
                 </TouchableOpacity>
 
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -76,5 +77,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: 'red',
-    },
+    }
 });
