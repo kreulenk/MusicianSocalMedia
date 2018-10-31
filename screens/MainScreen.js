@@ -17,7 +17,10 @@ class Main extends React.Component {
     password: '',
   };
 
-  onPress = () =>
+  onPressSignIn = () =>
+    this.props.navigation.navigate('Main', { name: this.state.name });
+
+  onPressSignUp = () =>
     this.props.navigation.navigate('Survey', { name: this.state.name });
 
   onChangeName = name => this.setState({ name });
@@ -41,8 +44,11 @@ class Main extends React.Component {
           onChangeText={this.onChangePassword}
           value={this.state.password}
         />
-        <TouchableOpacity onPress={this.onPress}>
-          <Text style={styles.buttonText}>Next</Text>
+        <TouchableOpacity onPress={this.onPressSignIn}>
+          <Text style={styles.buttonText}>Sign In</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onPressSignUp}>
+          <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     );
@@ -71,6 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'red',
+    padding: 10
   },
 });
 
