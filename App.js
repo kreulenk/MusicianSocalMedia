@@ -26,6 +26,7 @@ import MainScreen from './screens/MainScreen';
 import SurveyScreen from './screens/SurveyScreen';
 
 import PlayScreen from './screens/PlayScreen';
+import ProfileScreen from './screens/profile';
 
 
 // Create our main tab navigator for moving between the Feed and Photo screens
@@ -66,6 +67,13 @@ const navigator = createBottomTabNavigator(
       screen: PlayScreen,
       navigationOptions: {
         tabBarIcon: tabBarIcon('play-circle-filled'),
+      },
+    },
+
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        tabBarIcon: tabBarIcon('perm-identity'),
       },
     },
 
