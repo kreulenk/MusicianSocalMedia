@@ -44,7 +44,7 @@ const navigator = createBottomTabNavigator(
     Photo: {
       screen: SelectPhotoScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('add-box'),
+        tabBarIcon: tabBarIcon('camera'),
       },
     },
 
@@ -62,18 +62,10 @@ const navigator = createBottomTabNavigator(
       },
     },
 
-
-    Survey: {
-        screen: SurveyScreen,
-        navigationOptions: {
-            tabBarIcon: tabBarIcon('help'),
-        },
-    },
-
     Player: {
       screen: PlayScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('home'),
+        tabBarIcon: tabBarIcon('play-circle-filled'),
       },
     },
 
@@ -94,6 +86,10 @@ const stackNavigator = createStackNavigator(
     Login: {
         screen: MainScreen,
         navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+    },
+    Survey: {
+      screen: SurveyScreen,
+      navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
     },
     Main: {
       screen: navigator,
