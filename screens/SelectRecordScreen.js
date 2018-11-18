@@ -49,7 +49,6 @@ export default class SelectRecordScreen extends Component {
             try {
                 await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
                 await recording.startAsync(); //Starts the recording
-
                 this.setState({
                     isRecording: true
                 })
@@ -64,10 +63,9 @@ export default class SelectRecordScreen extends Component {
     const status = await getPermission(Permissions.AUDIO_RECORDING);
 
     if (status) {
+        const URI = recording.getURI();
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
-            const URI = recording.getURI();
-            recording.stopAndUnloadAsync(); //Stops the recording
             console.log(URI);
             this.setState({
                 isRecording: false //State so that the UI can know if we are currently recording or not
@@ -75,9 +73,10 @@ export default class SelectRecordScreen extends Component {
 
             let soundObject = new Audio.Sound();
             try {
-                await soundObject.loadAsync(URI);
+                await soundObject.loadAsync({
+                    uri: URI
+                });
                 await soundObject.playAsync();
-                console.log('play');
                 // Your sound is playing!
             } catch (error) {
                 // An error occurred!
