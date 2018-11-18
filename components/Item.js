@@ -20,7 +20,7 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const { text, name, imageWidth, imageHeight, uid, image } = this.props;
+    const { text, name, imageWidth, imageHeight, uid, image, audio } = this.props;
 
     if (image)
     {
@@ -45,6 +45,14 @@ export default class Item extends React.Component {
           <Metadata name={name} description={text} />
         </View>
       );
+    }
+    else if(audio){
+        return (
+            <View style={[styles.border]}>
+                <HeaderNoImage name={name} />
+                <Metadata name={name} description="audio" />
+            </View>
+        );
     }
     else
     {

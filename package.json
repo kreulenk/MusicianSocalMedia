@@ -8,19 +8,21 @@
   "dependencies": {
     "expo": "^30.0.0",
     "firebase": "5.2.0",
+    "prop-types": "^15.6.0",
     "react": "16.4.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-audio-toolkit": "^1.0.6",
+    "react-native-elements": "^v1.0.0-beta5",
     "react-native-gifted-chat": "^0.3.0",
     "react-native-multiple-choice": "0.0.8",
+    "react-native-slider": "^0.11.0",
+    "react-native-sound-recorder": "^1.3.2",
+    "react-native-video": "^3.2.1",
     "react-navigation": "2.6.0",
     "react-navigation-header-buttons": "^1.2.1",
     "rn-multiple-choice": "0.0.5",
-    "react-native-slider": "^0.11.0",
-    "react-native-video": "^3.2.1",
     "save": "^2.3.2",
     "uuid": "3.3.2",
-    "yarn": "^1.10.1",
-    "react-native-elements": "^v1.0.0-beta5",
-    "prop-types": "^15.6.0"
+    "yarn": "^1.10.1"
   }
 }

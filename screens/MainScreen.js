@@ -17,8 +17,9 @@ class Main extends React.Component {
     password: '',
   };
 
-  onPressSignIn = () =>
-    this.props.navigation.navigate('Main', { name: this.state.name });
+  onPressSignIn = () => {
+      this.props.navigation.navigate('Main', { name: this.state.name });
+  };
 
   onPressSignUp = () =>
     this.props.navigation.navigate('Survey', { name: this.state.name });

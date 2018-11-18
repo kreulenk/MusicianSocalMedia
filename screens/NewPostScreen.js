@@ -5,7 +5,7 @@ import HeaderButtons from 'react-navigation-header-buttons';
 
 import Fire from '../Fire';
 
-export default class NewPostScreen extends React.Component<Props> {
+export default class NewPostScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'New Post',
     headerRight: (

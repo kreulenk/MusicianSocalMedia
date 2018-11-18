@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Constants, ImagePicker, Audio, Permissions } from 'expo';
+import Expo, { Constants, ImagePicker, Audio, Permissions, } from 'expo';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -21,32 +21,65 @@ const Icon = ({ name }) => (
 );
 
 export default class SelectRecordScreen extends Component {
-  state = {};
+    state = {isRecording: false};
 
-  _takerecording = async () => {
+    _toggleRecording = async () => {
+        if (this.state.isRecording){
+            console.log("AlreadyPressed");
+        } else {
+            this._takeRecording();
+        }
+    };
+
+    _takeRecording = async () => {
+        Audio.setAudioModeAsync({
+            allowsRecordingIOS: true,
+            interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+            playsInSilentModeIOS: true,
+            shouldDuckAndroid: true,
+            interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+            playThroughEarpieceAndroid: true
+        });
+        Audio.setIsEnabledAsync(true);
+        const status = await getPermission(Permissions.AUDIO_RECORDING);
+        if (status){
+            const recording = new Audio.Recording();
+            try {
+                await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+                await recording.startAsync();
+                this.setState({
+                    isRecording: true
+                })
+                // You are now recording!
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
+  _stoprecording = async () => {
     const status = await getPermission(Permissions.AUDIO_RECORDING);
+
     if (status) {
-        await recording.prepareToRecordAsync(options);
-        await recording.startAsync();
+        const result = await recording.stopAndUnloadAsync();
+        if (!result.cancelled) {
+            this.setState({
+                isRecording: false
+            });
+          this.props.navigation.navigate('NewPost', { image: result.uri });
+        }
     }
   };
-
-  // _stoprecording = async () => {
-  //   const status = await getPermission(Permissions.AUDIO_RECORDING);
-  //   if (status) {
-  //       const return = await recording.stopAndUnloadAsync();
-  //       if (!result.cancelled) {
-  //         this.props.navigation.navigate('NewPost', { image: result.uri });
-  //       }
-  //   }
-  // };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text onPress={this._takeRecording} style={styles.text}>
+        <Text onPress={this._toggleRecording} style={styles.text}>
           Start Recording
         </Text>
+          {
+              this.state.isRecording && `<Text>Recording in progress<Text/>`
+          }
       </View>
     );
   }

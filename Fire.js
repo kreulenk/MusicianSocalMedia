@@ -42,13 +42,13 @@ class Fire {
       const querySnapshot = await ref.get();
       const data = [];
       querySnapshot.forEach(function(doc) {
-        if (doc.exists) {
+
+          if (doc.exists) {
           const post = doc.data() || {};
 
           // Reduce the name
           const user = post.user || {};
-
-          const name = user.deviceName;
+          const name = user.deviceName; //Place where username would be placed
           const reduced = {
             key: doc.id,
             name: (name || 'Secret Duck').trim(),
@@ -83,8 +83,6 @@ class Fire {
           text,
           uid: this.uid,
           timestamp: this.timestamp,
-          imageWidth: width,
-          imageHeight: height,
           image: remoteUri,
           user: getUserInfo(),
         });
