@@ -20,6 +20,8 @@ const Icon = ({ name }) => (
   <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
 );
 
+let recording = null;
+
 export default class SelectRecordScreen extends Component {
     state = {isRecording: false};
 
@@ -43,10 +45,10 @@ export default class SelectRecordScreen extends Component {
         Audio.setIsEnabledAsync(true);
         const status = await getPermission(Permissions.AUDIO_RECORDING);
         if (status){
-            const recording = new Audio.Recording();
+            recording = new Audio.Recording();
             try {
                 await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
-                await recording.startAsync();
+                await recording.startAsync(); //Starts the recording
                 this.setState({
                     isRecording: true
                 })
@@ -63,8 +65,10 @@ export default class SelectRecordScreen extends Component {
     if (status) {
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
+            recording.stopAndUnloadAsync(); //Stops the recording
+
             this.setState({
-                isRecording: false
+                isRecording: false //State so that the UI can know if we are currently recording or not
             });
           this.props.navigation.navigate('NewPost', { image: result.uri });
         }
