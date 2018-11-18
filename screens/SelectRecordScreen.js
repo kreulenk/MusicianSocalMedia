@@ -21,7 +21,6 @@ const Icon = ({ name }) => (
 );
 
 let recording = null;
-let URI = null;
 
 export default class SelectRecordScreen extends Component {
     state = {isRecording: false};
@@ -50,7 +49,7 @@ export default class SelectRecordScreen extends Component {
             try {
                 await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
                 await recording.startAsync(); //Starts the recording
-                URI = recording.getURI();
+
                 this.setState({
                     isRecording: true
                 })
@@ -67,24 +66,39 @@ export default class SelectRecordScreen extends Component {
     if (status) {
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
+            const URI = recording.getURI();
             recording.stopAndUnloadAsync(); //Stops the recording
             console.log(URI);
             this.setState({
                 isRecording: false //State so that the UI can know if we are currently recording or not
             });
-          this.props.navigation.navigate('NewPost', { image: result.uri });
+
+            let soundObject = new Audio.Sound();
+            try {
+                await soundObject.loadAsync(URI);
+                await soundObject.playAsync();
+                console.log('play');
+                // Your sound is playing!
+            } catch (error) {
+                // An error occurred!
+            }
+
+          // this.props.navigation.navigate('NewPost', { image: result.uri });
         }
     }
   };
 
   render() {
+      const before = <Text onPress={this._toggleRecording} style={styles.text}>
+          Start Recording
+      </Text>;
+      const after = <Text onPress={this._toggleRecording} style={styles.text}>
+          Stop Recording
+      </Text>;
     return (
       <View style={styles.container}>
-        <Text onPress={this._toggleRecording} style={styles.text}>
-          Start Recording
-        </Text>
           {
-              this.state.isRecording && `<Text>Recording in progress<Text/>`
+              !this.state.isRecording ? before : after
           }
       </View>
     );
