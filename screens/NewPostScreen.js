@@ -16,10 +16,16 @@ export default class NewPostScreen extends React.Component {
           onPress={() => {
             const text = navigation.getParam('text');
             const image = navigation.getParam('image');
+            const audio = navigation.getParam('audio');
+            console.log("New Log", audio);
             if (text && image) {
               navigation.goBack();
               Fire.shared.post({ text: text.trim(), image });
-            } else if (text) {
+            } else if (text && audio) {
+                navigation.goBack();
+                Fire.shared.post({text: text.trim(), audio});
+            }
+            else if (text) {
               navigation.goBack();
               Fire.shared.post({ text: text.trim() });
             } else {
@@ -35,7 +41,6 @@ export default class NewPostScreen extends React.Component {
 
   render() {
     const { image, audio } = this.props.navigation.state.params;
-    console.log("image", image, "audio", audio);
     if (image) {
       return (
         <View style={{ padding: 10, flexDirection: 'row' }}>
