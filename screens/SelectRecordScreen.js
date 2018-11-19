@@ -85,7 +85,7 @@ export default class SelectRecordScreen extends Component {
             } catch (error) {
                 // An error occurred!
             }
-          // this.props.navigation.navigate('NewPost', { audio: URI });
+          this.props.navigation.navigate('NewPost', { audio: URI });
         }
     }
   };
