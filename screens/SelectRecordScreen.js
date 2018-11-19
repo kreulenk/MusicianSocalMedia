@@ -5,6 +5,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import getPermission from '../utils/getPermission';
 
+import Player from '../components/Player';
+
+
 const options = {
   allowsEditing: true,
 };
@@ -21,6 +24,7 @@ const Icon = ({ name }) => (
 );
 
 let recording = null;
+let URI = null;
 
 export default class SelectRecordScreen extends Component {
     state = {isRecording: false};
@@ -38,6 +42,7 @@ export default class SelectRecordScreen extends Component {
             allowsRecordingIOS: true,
             interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
             playsInSilentModeIOS: true,
+            shouldDuckIOS: true,
             shouldDuckAndroid: true,
             interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
             playThroughEarpieceAndroid: true
@@ -63,7 +68,7 @@ export default class SelectRecordScreen extends Component {
     const status = await getPermission(Permissions.AUDIO_RECORDING);
 
     if (status) {
-        const URI = recording.getURI();
+        URI = recording.getURI();
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
             this.setState({
@@ -75,7 +80,7 @@ export default class SelectRecordScreen extends Component {
                 await soundObject.loadAsync({
                     uri: URI
                 });
-                await soundObject.playAsync();
+                //await soundObject.playAsync();
                 // Your sound is playing!
             } catch (error) {
                 // An error occurred!
@@ -97,6 +102,7 @@ export default class SelectRecordScreen extends Component {
           {
               !this.state.isRecording ? before : after
           }
+          <Player tracks={URI} />
       </View>
     );
   }

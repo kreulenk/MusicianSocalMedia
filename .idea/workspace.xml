@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfa44ba2-05f5-46bf-8ad4-d27f04f2c03a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/uploadAudio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/components/Item.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Item.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Fire.js" beforeDir="false" afterPath="$PROJECT_DIR$/Fire.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/NewPostScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/NewPostScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/SelectRecordScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SelectRecordScreen.js" afterDir="false" />
+>>>>>>> nearbyUsersKevin
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,7 +35,11 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
+<<<<<<< HEAD
           <entry key="js" value="32" />
+=======
+          <entry key="js" value="35" />
+>>>>>>> nearbyUsersKevin
           <entry key="json" value="2" />
           <entry key="ts" value="2" />
         </counts>
@@ -36,19 +47,31 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="2" />
+<<<<<<< HEAD
           <entry key="JavaScript" value="32" />
+=======
+          <entry key="JavaScript" value="35" />
+>>>>>>> nearbyUsersKevin
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="TypeScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="js" value="1561" />
+=======
+          <entry key="js" value="2049" />
+>>>>>>> nearbyUsersKevin
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="JavaScript" value="1561" />
+=======
+          <entry key="JavaScript" value="2049" />
+>>>>>>> nearbyUsersKevin
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -59,6 +82,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/screens/SelectRecordScreen.js">
@@ -142,6 +166,81 @@
         </entry>
       </file>
     </leaf>
+=======
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/screens/SelectRecordScreen.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1019">
+                  <caret line="85" column="37" lean-forward="true" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+                  <folding>
+                    <element signature="e#0#46#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Fire.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="400">
+                  <caret line="99" column="26" lean-forward="true" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#0#24#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/utils/uploadPhoto.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/screens/NewPostScreen.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="264">
+                  <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+                  <folding>
+                    <element signature="e#0#46#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/utils/uploadPhoto.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/utils/uploadAudio.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+>>>>>>> nearbyUsersKevin
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -153,9 +252,13 @@
       <find>console</find>
       <find>state</find>
       <find>image</find>
+<<<<<<< HEAD
       <find>&lt;Play</find>
       <find>&lt;Item</find>
       <find>&lt;Player</find>
+=======
+      <find>track</find>
+>>>>>>> nearbyUsersKevin
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -171,11 +274,15 @@
         <option value="$PROJECT_DIR$/screens/MainScreen.js" />
         <option value="$PROJECT_DIR$/screens/ChatScreen.js" />
         <option value="$PROJECT_DIR$/screens/FeedScreen.js" />
-        <option value="$PROJECT_DIR$/Fire.js" />
         <option value="$PROJECT_DIR$/components/Player.js" />
         <option value="$PROJECT_DIR$/screens/SelectRecordScreen.js" />
         <option value="$PROJECT_DIR$/screens/NewPostScreen.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/components/Item.js" />
+=======
+        <option value="$PROJECT_DIR$/utils/uploadAudio.js" />
+        <option value="$PROJECT_DIR$/Fire.js" />
+>>>>>>> nearbyUsersKevin
       </list>
     </option>
   </component>
@@ -271,7 +378,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="23594000" />
+=======
+    <option name="totallyTimeSpent" value="26019000" />
+>>>>>>> nearbyUsersKevin
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -305,13 +416,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/components/Footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.expo/settings.json">
       <provider selected="true" editor-type-id="text-editor" />
@@ -410,6 +515,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/node_modules/expo/src/Expo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1392">
@@ -428,6 +534,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/NewPostScreen.js">
+=======
+    <entry file="file://$PROJECT_DIR$/screens/MainScreen.js">
+>>>>>>> nearbyUsersKevin
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
@@ -456,24 +565,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Player.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="135">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+=======
+        <state relative-caret-position="-406">
+          <caret line="22" column="3" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+>>>>>>> nearbyUsersKevin
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/screens/FeedScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
           <caret line="85" column="9" lean-forward="true" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
+=======
+    <entry file="file://$PROJECT_DIR$/screens/SelectRecordScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1019">
+          <caret line="85" column="37" lean-forward="true" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+>>>>>>> nearbyUsersKevin
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/components/List.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -490,6 +612,52 @@
           <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/screens/NewPostScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/uploadPhoto.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/uploadAudio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/shrinkImageAsync.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/uuid/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fire.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="99" column="26" lean-forward="true" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+>>>>>>> nearbyUsersKevin
           </folding>
         </state>
       </provider>
