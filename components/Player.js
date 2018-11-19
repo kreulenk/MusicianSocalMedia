@@ -60,26 +60,27 @@ export default class Player extends Component {
     }
   }
 
-  onForward() {
-    if (this.state.selectedTrack < this.props.tracks.length - 1) {
-      this.refs.audioElement && this.refs.audioElement.seek(0);
-      this.setState({ isChanging: true });
-      setTimeout(() => this.setState({
-        currentPosition: 0,
-        totalLength: 1,
-        paused: false,
-        isChanging: false,
-        selectedTrack: this.state.selectedTrack + 1,
-      }), 0);
-    }
-  }
+  // onForward() {
+  //   if (this.state.selectedTrack < this.props.tracks.length - 1) {
+  //     this.refs.audioElement && this.refs.audioElement.seek(0);
+  //     this.setState({ isChanging: true });
+  //     setTimeout(() => this.setState({
+  //       currentPosition: 0,
+  //       totalLength: 1,
+  //       paused: false,
+  //       isChanging: false,
+  //       selectedTrack: this.state.selectedTrack + 1,
+  //     }), 0);
+  //   }
+  // }
 
 
 
   render() {
-    const track = this.props.tracks[this.state.selectedTrack];
+    const track = this.props.tracks;
+    console.log(track)
     const video = this.state.isChanging ? null : (
-      <Video source={{uri: 'http://russprince.com/hobbies/files/13%20Beethoven%20-%20Fur%20Elise.mp3'}} // Can be a URL or a local file.
+      <Video source={{uri: "file:///var/mobile/Containers/Data/Application/6574E870-BDE9-4D5C-B3F0-A71F6939E8F9/Library/Caches/ExponentExperienceData/%2540anonymous%252Fsoundmatch-cd5a9938-4828-4d91-88fd-9551802a16a2/AV/recording-A1EA423C-8999-4C0A-9CA0-D41BD97CB847.caf"}} // Can be a URL or a local file.
         shouldPlay={this.state.shouldPlay}
         ref="audioElement"
         paused={this.state.paused}               // Pauses playback entirely.
@@ -100,14 +101,14 @@ export default class Player extends Component {
           onPressRepeat={() => this.setState({repeatOn : !this.state.repeatOn})}
           repeatOn={this.state.repeatOn}
           shuffleOn={this.state.shuffleOn}
-          forwardDisabled={this.state.selectedTrack === this.props.tracks.length - 1}
+          //forwardDisabled={this.state.selectedTrack === this.props.tracks.length - 1}
           onPressShuffle={() => this.setState({shuffleOn: !this.state.shuffleOn})}
           onPressPlay={() => this.setState({shouldPlay: true,
             paused: false})}
           onPressPause={() => this.setState({shouldPlay: false,
             paused: true})}
           onBack={this.onBack.bind(this)}
-          onForward={this.onForward.bind(this)}
+          //onForward={this.onForward.bind(this)}
           paused={this.state.paused}/>
         {video}
       </View>
