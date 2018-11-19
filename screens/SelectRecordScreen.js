@@ -92,7 +92,6 @@ export default class SelectRecordScreen extends Component {
         const URI = recording.getURI();
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
-            console.log(URI);
             this.setState({
                 isRecording: false //State so that the UI can know if we are currently recording or not
             });
@@ -107,8 +106,7 @@ export default class SelectRecordScreen extends Component {
             } catch (error) {
                 // An error occurred!
             }
-
-          // this.props.navigation.navigate('NewPost', { image: result.uri });
+          this.props.navigation.navigate('NewPost', { audio: URI });
         }
     }
   };
