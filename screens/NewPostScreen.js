@@ -58,7 +58,6 @@ export default class NewPostScreen extends React.Component {
     else if (audio) {
         return (
             <View style={{ padding: 10, flexDirection: 'row' }}>
-                <Player/>
                 <TextInput
                     multiline
                     style={{ flex: 1, paddingHorizontal: 16 }}
