@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Image, TextInput, View } from 'react-native';
+import { Image, TextInput, View, Text } from 'react-native';
 import HeaderButtons from 'react-navigation-header-buttons';
+import Player from '../components/Player';
 
 import Fire from '../Fire';
 
@@ -33,7 +34,8 @@ export default class NewPostScreen extends React.Component {
   state = { text: '' };
 
   render() {
-    const { image } = this.props.navigation.state.params;
+    const { image, audio } = this.props.navigation.state.params;
+    console.log("image", image, "audio", audio);
     if (image) {
       return (
         <View style={{ padding: 10, flexDirection: 'row' }}>
@@ -52,6 +54,22 @@ export default class NewPostScreen extends React.Component {
           />
         </View>
       );
+    }
+    else if (audio) {
+        return (
+            <View style={{ padding: 10, flexDirection: 'row' }}>
+                <Player/>
+                <TextInput
+                    multiline
+                    style={{ flex: 1, paddingHorizontal: 16 }}
+                    placeholder="Add a description for your new sound..."
+                    onChangeText={text => {
+                        this.setState({ text });
+                        this.props.navigation.setParams({ text });
+                    }}
+                />
+            </View>
+        );
     }
     else
     {
