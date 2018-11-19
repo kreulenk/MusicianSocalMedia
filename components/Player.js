@@ -78,9 +78,9 @@ export default class Player extends Component {
 
   render() {
     const track = this.props.tracks;
-    console.log(track)
+    console.log(track);
     const video = this.state.isChanging ? null : (
-      <Video source={{uri: "file:///var/mobile/Containers/Data/Application/6574E870-BDE9-4D5C-B3F0-A71F6939E8F9/Library/Caches/ExponentExperienceData/%2540anonymous%252Fsoundmatch-cd5a9938-4828-4d91-88fd-9551802a16a2/AV/recording-A1EA423C-8999-4C0A-9CA0-D41BD97CB847.caf"}} // Can be a URL or a local file.
+      <Video source={{uri: track}} // Can be a URL or a local file.
         shouldPlay={this.state.shouldPlay}
         ref="audioElement"
         paused={this.state.paused}               // Pauses playback entirely.

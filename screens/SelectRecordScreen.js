@@ -68,7 +68,7 @@ export default class SelectRecordScreen extends Component {
     const status = await getPermission(Permissions.AUDIO_RECORDING);
 
     if (status) {
-        const URI = recording.getURI();
+        URI = recording.getURI();
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
             this.setState({
@@ -85,7 +85,7 @@ export default class SelectRecordScreen extends Component {
             } catch (error) {
                 // An error occurred!
             }
-          this.props.navigation.navigate('NewPost', { audio: URI });
+          // this.props.navigation.navigate('NewPost', { audio: URI });
         }
     }
   };
