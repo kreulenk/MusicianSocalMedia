@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import Player from '../components/Player';
 
 const profileImageSize = 36;
 const padding = 12;
@@ -50,7 +51,8 @@ export default class Item extends React.Component {
         return (
             <View style={[styles.border]}>
                 <HeaderNoImage name={name} />
-                <Metadata name={name} description="audio" />
+                <Player tracks={audio}/>
+                <Metadata name={name} description={text} />
             </View>
         );
     }
