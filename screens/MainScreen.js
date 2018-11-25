@@ -21,7 +21,7 @@ function signup_user(username_,password_){
   }).then((response) => response.json());
 }
 
-function signin_user(username_, password_){
+function signin_user(screen, username_, password_){
   var url = 'https://sound-match.herokuapp.com/authenticate/' + username_ + '/' +password_;
   var myresponse = "ss";
   console.log(url);
@@ -31,7 +31,13 @@ function signin_user(username_, password_){
   .then((response) => response.json())
   .then((responseJson) => {
     myresponse= String(responseJson.message);
-    return (myresponse=="successfully authenticated user")
+    if (myresponse=="successfully authenticated user") {
+      screen.props.navigation.navigate('Main', { name: screen.state.name });
+      return true;
+    } else {
+      screen.setState({error: 'Invalid username or password'});
+      return false;
+    }
     }).catch((error) => {
       console.error(error);
     }).done();
@@ -46,13 +52,11 @@ class Main extends React.Component {
   state = {
     name: '',
     password: '',
+    error: '',
   };
 
   onPressSignIn = () => {
-      var msg = signin_user(String(this.state.name),String(this.state.password));
-      if (msg){
-        this.props.navigation.navigate('Main', { name: this.state.name });
-      }
+    signin_user(this, String(this.state.name),String(this.state.password));
   };
 
   onPressSignUp = () => {
@@ -87,6 +91,7 @@ class Main extends React.Component {
         <TouchableOpacity onPress={this.onPressSignUp}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
+        <Text style={styles.title}>{this.state.error}</Text>
       </View>
     );
   }
