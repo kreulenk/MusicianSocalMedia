@@ -7,6 +7,37 @@ import {
   View,
 } from 'react-native';
 
+function signup_user(username_,password_){
+  return fetch('https://sound-match.herokuapp.com/register',{
+    method:'POST',
+    headers:{
+      Accept:'application/json',
+      'Content-Type':'application/json',
+    },
+    body:JSON.stringify({
+      username:username_,
+      password:password_
+    }),
+  }).then((response) => response.json());
+}
+
+function signin_user(username_, password_){
+  var url = 'https://sound-match.herokuapp.com/authenticate/' + username_ + '/' +password_;
+  var myresponse = "ss";
+  console.log(url);
+  fetch(url, {
+         method: 'GET'
+  })
+  .then((response) => response.json())
+  .then((responseJson) => {
+    myresponse= String(responseJson.message);
+    return (myresponse=="successfully authenticated user")
+    }).catch((error) => {
+      console.error(error);
+    }).done();
+  return true;
+}
+
 class Main extends React.Component {
   static navigationOptions = {
     title: 'Chatter',
@@ -18,11 +49,16 @@ class Main extends React.Component {
   };
 
   onPressSignIn = () => {
-      this.props.navigation.navigate('Main', { name: this.state.name });
+      var msg = signin_user(String(this.state.name),String(this.state.password));
+      if (msg){
+        this.props.navigation.navigate('Main', { name: this.state.name });
+      }
   };
 
-  onPressSignUp = () =>
+  onPressSignUp = () => {
+    signup_user(this.state.name,this.state.password);
     this.props.navigation.navigate('Survey', { name: this.state.name });
+  }
 
   onChangeName = name => this.setState({ name });
   onChangePassword = password => this.setState({ password });
