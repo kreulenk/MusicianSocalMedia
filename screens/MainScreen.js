@@ -24,7 +24,6 @@ function signup_user(username_,password_){
 function signin_user(screen, username_, password_){
   var url = 'https://sound-match.herokuapp.com/authenticate/' + username_ + '/' +password_;
   var myresponse = "ss";
-  console.log(url);
   fetch(url, {
          method: 'GET'
   })
