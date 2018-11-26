@@ -25,7 +25,10 @@ export default class SelectPhotoScreen extends Component {
   state = {};
 
   _simplePost = async () => {
-    this.props.navigation.navigate('NewPost', {});
+    var navigationProps = {
+      name: this.props.navigation.getParam('name')
+    };
+    this.props.navigation.navigate('NewPost', navigationProps);
   };
 
   _selectPhoto = async () => {
@@ -33,7 +36,11 @@ export default class SelectPhotoScreen extends Component {
     if (status) {
       const result = await ImagePicker.launchImageLibraryAsync(options);
       if (!result.cancelled) {
-        this.props.navigation.navigate('NewPost', { image: result.uri });
+        var navigationProps = {
+          image:  result.uri,
+          name: this.props.navigation.getParam('name')
+        };
+        this.props.navigation.navigate('NewPost', navigationProps);
       }
     }
   };
@@ -43,7 +50,11 @@ export default class SelectPhotoScreen extends Component {
     if (status) {
       const result = await ImagePicker.launchCameraAsync(options);
       if (!result.cancelled) {
-        this.props.navigation.navigate('NewPost', { image: result.uri });
+        var navigationProps = {
+          image:  result.uri,
+          name: this.props.navigation.getParam('name')
+        };
+        this.props.navigation.navigate('NewPost', navigationProps);
       }
     }
   };

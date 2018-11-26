@@ -49,10 +49,16 @@ class Fire {
 
           // Reduce the name
           const user = post.user || {};
-          const name = user.deviceName; //Place where username would be placed
+          let name = post.name; //Place where username would be placed
+          if (!name) {
+            name = user.deviceName;
+          }
+          if (!name) {
+            name = 'Metro Boomin'
+          }
           const reduced = {
             key: doc.id,
-            name: (name || 'Secret Duck').trim(),
+            name: name.trim(),
             ...post,
           };
           data.push(reduced);
@@ -78,7 +84,7 @@ class Fire {
       return uploadAudio(uri, path);
   };
 
-  post = async ({ text, image: imageUri, audio: audioURI }) => {
+  post = async ({ name, text, image: imageUri, audio: audioURI }) => {
     try {
       if (imageUri) {
         const { uri: reducedImage, width, height } = await shrinkImageAsync(
@@ -92,6 +98,7 @@ class Fire {
           timestamp: this.timestamp,
           image: remoteUri,
           user: getUserInfo(),
+          name: name,
         });
       } else if(audioURI) { // If the user is trying to play an audio sample
         const remoteUri = await this.uploadAudioAsync(audioURI);
@@ -100,7 +107,8 @@ class Fire {
             uid: this.uid,
             timestamp: this.timestamp,
             audio: remoteUri,
-            user: getUserInfo()
+            user: getUserInfo(),
+            name: name,
         })
       }
       else
@@ -110,6 +118,7 @@ class Fire {
           uid: this.uid,
           timestamp: this.timestamp,
           user: getUserInfo(),
+          name: name,
         });
       }
     } catch ({ message }) {

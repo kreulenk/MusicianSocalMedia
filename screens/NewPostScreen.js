@@ -17,17 +17,18 @@ export default class NewPostScreen extends React.Component {
             const text = navigation.getParam('text');
             const image = navigation.getParam('image');
             const audio = navigation.getParam('audio');
+            const name = navigation.getParam('name');
             console.log("New Log", audio);
             if (text && image) {
               navigation.goBack();
-              Fire.shared.post({ text: text.trim(), image });
+              Fire.shared.post({ name, text: text.trim(), image });
             } else if (text && audio) {
                 navigation.goBack();
-                Fire.shared.post({text: text.trim(), audio});
+                Fire.shared.post({name, text: text.trim(), audio});
             }
             else if (text) {
               navigation.goBack();
-              Fire.shared.post({ text: text.trim() });
+              Fire.shared.post({ name, text: text.trim() });
             } else {
               alert('Need valid description');
             }
