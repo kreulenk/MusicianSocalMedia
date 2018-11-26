@@ -22,7 +22,7 @@ const Icon = ({ name }) => (
     <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
 );
 
-export default class ChatScreen extends Component<Props> {
+export default class ChatScreen extends Component {
     state = { name: '' };
     static navigationOptions = ({ navigation }) => ({
         title: (navigation.state.params || {}).name || 'Chat!',

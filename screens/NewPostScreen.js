@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Image, TextInput, View } from 'react-native';
+import { Image, TextInput, View, Text } from 'react-native';
 import HeaderButtons from 'react-navigation-header-buttons';
+import Player from '../components/Player';
 
 import Fire from '../Fire';
 
-export default class NewPostScreen extends React.Component<Props> {
+export default class NewPostScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'New Post',
     headerRight: (
@@ -15,10 +16,16 @@ export default class NewPostScreen extends React.Component<Props> {
           onPress={() => {
             const text = navigation.getParam('text');
             const image = navigation.getParam('image');
+            const audio = navigation.getParam('audio');
+            console.log("New Log", audio);
             if (text && image) {
               navigation.goBack();
               Fire.shared.post({ text: text.trim(), image });
-            } else if (text) {
+            } else if (text && audio) {
+                navigation.goBack();
+                Fire.shared.post({text: text.trim(), audio});
+            }
+            else if (text) {
               navigation.goBack();
               Fire.shared.post({ text: text.trim() });
             } else {
@@ -33,7 +40,7 @@ export default class NewPostScreen extends React.Component<Props> {
   state = { text: '' };
 
   render() {
-    const { image } = this.props.navigation.state.params;
+    const { image, audio } = this.props.navigation.state.params;
     if (image) {
       return (
         <View style={{ padding: 10, flexDirection: 'row' }}>
@@ -52,6 +59,21 @@ export default class NewPostScreen extends React.Component<Props> {
           />
         </View>
       );
+    }
+    else if (audio) {
+        return (
+            <View style={{ padding: 10, flexDirection: 'row' }}>
+                <TextInput
+                    multiline
+                    style={{ flex: 1, paddingHorizontal: 16 }}
+                    placeholder="Add a description for your new sound..."
+                    onChangeText={text => {
+                        this.setState({ text });
+                        this.props.navigation.setParams({ text });
+                    }}
+                />
+            </View>
+        );
     }
     else
     {

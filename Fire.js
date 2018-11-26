@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import getUserInfo from './utils/getUserInfo';
 import shrinkImageAsync from './utils/shrinkImageAsync';
 import uploadPhoto from './utils/uploadPhoto';
+import uploadAudio from './utils/uploadAudio'
 
 const firebase = require('firebase');
 // Required for side-effects
@@ -42,13 +43,13 @@ class Fire {
       const querySnapshot = await ref.get();
       const data = [];
       querySnapshot.forEach(function(doc) {
-        if (doc.exists) {
+
+          if (doc.exists) {
           const post = doc.data() || {};
 
           // Reduce the name
           const user = post.user || {};
-
-          const name = user.deviceName;
+          const name = user.deviceName; //Place where username would be placed
           const reduced = {
             key: doc.id,
             name: (name || 'Secret Duck').trim(),
@@ -65,17 +66,23 @@ class Fire {
     }
   };
 
-  // Upload Data
+  // Upload Photo
   uploadPhotoAsync = async uri => {
     const path = `${collectionName}/${this.uid}/${uuid.v4()}.jpg`;
     return uploadPhoto(uri, path);
   };
 
-  post = async ({ text, image: localUri }) => {
+  // Upload Audio
+  uploadAudioAsync = async uri => {
+      const path = `${collectionName}/${this.uid}/${uuid.v4()}.cat`;
+      return uploadAudio(uri, path);
+  };
+
+  post = async ({ text, image: imageUri, audio: audioURI }) => {
     try {
-      if (localUri) {
+      if (imageUri) {
         const { uri: reducedImage, width, height } = await shrinkImageAsync(
-          localUri,
+          imageUri,
         );
 
         const remoteUri = await this.uploadPhotoAsync(reducedImage);
@@ -83,11 +90,18 @@ class Fire {
           text,
           uid: this.uid,
           timestamp: this.timestamp,
-          imageWidth: width,
-          imageHeight: height,
           image: remoteUri,
           user: getUserInfo(),
         });
+      } else if(audioURI) { // If the user is trying to play an audio sample
+        const remoteUri = await this.uploadAudioAsync(audioURI);
+        this.collection.add({
+            text,
+            uid: this.uid,
+            timestamp: this.timestamp,
+            audio: remoteUri,
+            user: getUserInfo()
+        })
       }
       else
       {
