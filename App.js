@@ -88,21 +88,35 @@ const navigator = createBottomTabNavigator(
   },
 );
 
+const LandingHeader = (headerProps) => (
+  <View style={{}}>
+  </View>
+);
+
+const MainHeader = (headerProps) => (
+  <View style={{height: 40, backgroundColor: '#FFFFFF'}}>
+  </View>
+);
+
 // Create the navigator that pushes high-level screens like the `NewPost` screen.
 const stackNavigator = createStackNavigator(
   {
     Login: {
         screen: MainScreen,
-        navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+        navigationOptions: { header: LandingHeader },
     },
     Survey: {
       screen: SurveyScreen,
-      navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+      navigationOptions: { header: LandingHeader },
     },
     Main: {
       screen: navigator,
       // Set the title for our app when the tab bar screen is present
-      navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+      navigationOptions: { header: MainHeader },
+    },
+    Message: {
+      screen: ChatScreen,
+      navigationOptions: {  },
     },
     // This screen will not have a tab bar
     NewPost: NewPostScreen,

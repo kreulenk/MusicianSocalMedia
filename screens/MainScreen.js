@@ -37,9 +37,11 @@ function signin_user(screen, username_, password_){
       screen.setState({error: 'Invalid username or password'});
       return false;
     }
-    }).catch((error) => {
-      console.error(error);
-    }).done();
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+  .done();
   return true;
 }
 
@@ -55,12 +57,16 @@ class Main extends React.Component {
   };
 
   onPressSignIn = () => {
-    signin_user(this, String(this.state.name),String(this.state.password));
+    if (this.state.name.length > 0 && this.state.password.length > 0) {
+      signin_user(this, String(this.state.name),String(this.state.password));
+    }
   };
 
   onPressSignUp = () => {
-    signup_user(this.state.name,this.state.password);
-    this.props.navigation.navigate('Survey', { name: this.state.name });
+    if (this.state.name.length > 0 && this.state.password.length > 0) {
+      signup_user(this.state.name,this.state.password);
+      this.props.navigation.navigate('Survey', { name: this.state.name });
+    }
   }
 
   onChangeName = name => this.setState({ name });
@@ -68,7 +74,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.screen}>
         <Text style={styles.title}>Enter your username:</Text>
         <TextInput
           style={styles.nameInput}
@@ -96,29 +102,35 @@ class Main extends React.Component {
   }
 }
 
-const offset = 24;
+const offset = 18;
 const styles = StyleSheet.create({
+  screen: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'stretch',
+    flex: 2
+  },
   title: {
     marginTop: offset,
-    marginLeft: offset,
     fontSize: 18,
     fontWeight: 'bold',
     color: 'red',
+    textAlign: 'center',
   },
   nameInput: {
-    height: offset * 2,
+    height: offset * 3,
     margin: offset,
     paddingHorizontal: offset,
     borderColor: 'red',
     borderWidth: 1,
   },
   buttonText: {
-    marginLeft: offset,
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
     color: 'red',
-    padding: 10
+    textAlign: 'center',
+    margin: 20
   },
 });
 

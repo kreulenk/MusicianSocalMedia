@@ -56,7 +56,7 @@ export default class ChatScreen extends Component {
         );
     }
     componentWillUnmount() {
-        Fire.shared.off();
+        // Fire.shared.off();
     }
 }
 
