@@ -39,6 +39,7 @@ const navigator = createBottomTabNavigator(
       navigationOptions: {
         // Add a cool Material Icon for this screen
         tabBarIcon: tabBarIcon('home'),
+        tabBarLabel: 'Feed'
       },
     },
     // All the same stuff but for the Photo screen
@@ -46,6 +47,7 @@ const navigator = createBottomTabNavigator(
       screen: SelectPhotoScreen,
       navigationOptions: {
         tabBarIcon: tabBarIcon('add-to-photos'),
+        tabBarLabel: 'Post'
       },
     },
 
@@ -54,19 +56,22 @@ const navigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: tabBarIcon('play-circle-filled'),
       },
+      tabBarLabel: 'Player'
     },
 
     Chat: {
       screen: ChatScreen,
       navigationOptions: {
         tabBarIcon: tabBarIcon('sms'),
+        tabBarLabel: 'Chat'
       },
     },
 
     Profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('perm-identity'),
+        tabBarIcon: tabBarIcon('account-circle'),
+        tabBarLabel: 'Profile'
       },
     },
 
@@ -74,9 +79,10 @@ const navigator = createBottomTabNavigator(
   {
     // We want to hide the labels and set a nice 2-tone tint system for our tabs
     tabBarOptions: {
-      showLabel: false,
+      showLabel: true,
       activeTintColor: 'red',
       inactiveTintColor: 'black',
+      style: {height: 80, paddingBottom: 24, paddingTop: 10}
     },
   },
 );

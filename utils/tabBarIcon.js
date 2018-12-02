@@ -3,10 +3,10 @@ import * as React from 'react';
 
 const tabBarIcon = name => ({ tintColor }) => (
   <MaterialIcons
-    style={{ backgroundColor: 'transparent' }}
+    style={{ backgroundColor: 'transparent'}}
     name={name}
     color={tintColor}
-    size={24}
+    size={32}
   />
 );
 
