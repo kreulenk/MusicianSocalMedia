@@ -25,7 +25,7 @@ const Icon = ({ name }) => (
 export default class ChatScreen extends Component {
     state = { name: '' };
     static navigationOptions = ({ navigation }) => ({
-        title: (navigation.state.params || {}).name || 'Chat!',
+        title: '',
     });
 
     state = {

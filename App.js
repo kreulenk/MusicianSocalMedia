@@ -45,21 +45,7 @@ const navigator = createBottomTabNavigator(
     Photo: {
       screen: SelectPhotoScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('camera'),
-      },
-    },
-
-    Record: {
-      screen: SelectRecordScreen,
-      navigationOptions: {
-        tabBarIcon: tabBarIcon('mic'),
-      },
-    },
-
-    Chat: {
-      screen: ChatScreen,
-      navigationOptions: {
-        tabBarIcon: tabBarIcon('chat-bubble'),
+        tabBarIcon: tabBarIcon('add-to-photos'),
       },
     },
 
@@ -67,6 +53,13 @@ const navigator = createBottomTabNavigator(
       screen: PlayScreen,
       navigationOptions: {
         tabBarIcon: tabBarIcon('play-circle-filled'),
+      },
+    },
+
+    Chat: {
+      screen: ChatScreen,
+      navigationOptions: {
+        tabBarIcon: tabBarIcon('sms'),
       },
     },
 
@@ -120,6 +113,7 @@ const stackNavigator = createStackNavigator(
     },
     // This screen will not have a tab bar
     NewPost: NewPostScreen,
+    RecordAudio: SelectRecordScreen,
   },
   {
     cardStyle: { backgroundColor: 'white' },

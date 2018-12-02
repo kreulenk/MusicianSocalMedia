@@ -59,12 +59,8 @@ export default class SelectPhotoScreen extends Component {
     }
   };
 
-  _takerecording = async () => {
-    const status = await getPermission(Permissions.AUDIO_RECORDING);
-    if (status) {
-        await this.props.prepareToRecordAsync(options);
-        await this.props.startAsync();
-    }
+  _takeRecording = async () => {
+    this.props.navigation.navigate('RecordAudio', {});
   };
 
   render() {
@@ -72,6 +68,9 @@ export default class SelectPhotoScreen extends Component {
       <View style={styles.container}>
         <Text onPress={this._simplePost} style={styles.text}>
           New Simple Post
+        </Text>
+        <Text onPress={this._takeRecording} style={styles.text}>
+          Record Audio
         </Text>
         <Text onPress={this._selectPhoto} style={styles.text}>
           Select Photo
