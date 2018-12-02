@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Constants, ImagePicker, Audio, Permissions, Camera } from 'expo';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 
 import getPermission from '../utils/getPermission';
@@ -9,6 +9,8 @@ import getPermission from '../utils/getPermission';
 const options = {
   allowsEditing: true,
 };
+
+const color = '#3D3D3D';
 
 const IconBar = () => (
     <View style={styles.row}>
@@ -18,7 +20,7 @@ const IconBar = () => (
 );
 
 const Icon = ({ name }) => (
-  <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
+  <Ionicons name={name} size={40} color={color} />
 );
 
 export default class SelectPhotoScreen extends Component {
@@ -65,35 +67,65 @@ export default class SelectPhotoScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text onPress={this._simplePost} style={styles.text}>
-          New Simple Post
-        </Text>
-        <Text onPress={this._takeRecording} style={styles.text}>
-          Record Audio
-        </Text>
-        <Text onPress={this._selectPhoto} style={styles.text}>
-          Select Photo
-        </Text>
-        <Text onPress={this._takePhoto} style={styles.text}>
-          Take Photo
-        </Text>
+      <View style={styles.column}>
+        <View style={styles.row}>
+          <TouchableOpacity style={styles.option} onPress={this._simplePost} >
+            <Icon name="ios-paper" />
+            <Text style={styles.text}>
+              Text Post
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.option} onPress={this._takeRecording}>
+            <Icon name="ios-mic" />
+            <Text style={styles.text}>
+              Record Audio
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity style={styles.option} onPress={this._selectPhoto}>
+            <Icon name="ios-photos" />
+            <Text style={styles.text}>
+              Select Photo
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.option} onPress={this._takePhoto}>
+            <Icon name="ios-camera" />
+            <Text style={styles.text}>
+              Take Photo
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  row: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  column: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
+  },
   text: {
-    padding: 24,
+    padding: 0,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'red',
+    color: color,
    },
+   option: {
+     width: 125,
+     height: 100,
+     flexDirection: 'column',
+     justifyContent: 'center',
+     alignItems: 'center',
+     margin: 15,
+   }
 });
