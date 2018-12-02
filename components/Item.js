@@ -8,6 +8,10 @@ const padding = 12;
 
 const clicked_color = '#FF4747';
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
 export default class Item extends React.Component {
   state = {
     numberOfLikes: undefined,
@@ -24,6 +28,17 @@ export default class Item extends React.Component {
       }
     }
     this.setState({numberOfLikes: this.props.numberOfLikes});
+    if (getRandomInt(3) === 0) {
+      this.setState({
+        hasLiked: true,
+        numberOfLikes: this.props.numberOfLikes + 1
+      });
+    } else {
+      this.setState({
+        hasLiked: false,
+        numberOfLikes: this.props.numberOfLikes
+      });
+    }
   }
 
   onPressLike = () => {
