@@ -6,6 +6,12 @@ import Player from '../components/Player';
 const profileImageSize = 36;
 const padding = 12;
 
+const clicked_color = '#FF4747';
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
 export default class Item extends React.Component {
   state = {
     numberOfLikes: undefined,
@@ -22,6 +28,17 @@ export default class Item extends React.Component {
       }
     }
     this.setState({numberOfLikes: this.props.numberOfLikes});
+    if (getRandomInt(3) === 0) {
+      this.setState({
+        hasLiked: true,
+        numberOfLikes: this.props.numberOfLikes + 1
+      });
+    } else {
+      this.setState({
+        hasLiked: false,
+        numberOfLikes: this.props.numberOfLikes
+      });
+    }
   }
 
   onPressLike = () => {
@@ -149,7 +166,7 @@ const IconBar = ( {component, hasLiked} ) => (
           onPress={component.onPressUnlike}
         >
           <View style={styles.action_item}>
-            <Icon name="ios-thumbs-up" color="#EF6C6C"/>
+            <Icon name="ios-thumbs-up" color={clicked_color}/>
             <Text style={styles.action_text_clicked}>Like</Text>
           </View>
         </TouchableOpacity>
@@ -178,7 +195,7 @@ const styles = StyleSheet.create({
   action_text_clicked: { 
     fontWeight: '600',
     fontSize: 12,
-    color: "#EF6C6C"
+    color: clicked_color
   },
   subtitle: {
     opacity: 0.8,
