@@ -38,7 +38,7 @@ const navigator = createBottomTabNavigator(
       screen: FeedScreen,
       navigationOptions: {
         // Add a cool Material Icon for this screen
-        tabBarIcon: tabBarIcon('home'),
+        tabBarIcon: tabBarIcon('view-headline'),
         tabBarLabel: 'Feed'
       },
     },
