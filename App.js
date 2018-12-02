@@ -97,6 +97,8 @@ const MainHeader = (headerProps) => (
   </View>
 );
 
+const stackHeaderStyle = {marginTop: 28};
+
 // Create the navigator that pushes high-level screens like the `NewPost` screen.
 const stackNavigator = createStackNavigator(
   {
@@ -115,11 +117,17 @@ const stackNavigator = createStackNavigator(
     },
     Message: {
       screen: ChatScreen,
-      navigationOptions: {  },
+      navigationOptions: { headerStyle: stackHeaderStyle },
     },
     // This screen will not have a tab bar
-    NewPost: NewPostScreen,
-    RecordAudio: SelectRecordScreen,
+    NewPost: {
+      screen: NewPostScreen,
+      navigationOptions: { headerStyle: stackHeaderStyle }
+    },
+    RecordAudio: {
+      screen: SelectRecordScreen,
+      navigationOptions: { headerStyle: stackHeaderStyle }
+    },
   },
   {
     cardStyle: { backgroundColor: 'white' },
