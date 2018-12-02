@@ -1,13 +1,16 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Player from '../components/Player';
 
 const profileImageSize = 36;
 const padding = 12;
 
 export default class Item extends React.Component {
-  state = {};
+  state = {
+    numberOfLikes: undefined,
+    hasLiked: false,
+  };
 
   componentDidMount() {
     if (!this.props.imageWidth) {
@@ -18,10 +21,32 @@ export default class Item extends React.Component {
         });
       }
     }
+    this.setState({numberOfLikes: this.props.numberOfLikes});
   }
 
+  onPressLike = () => {
+    if (this.state.hasLiked === false) {
+      this.setState({
+        numberOfLikes: this.state.numberOfLikes + 1,
+        hasLiked: true,
+      });
+    }
+  };
+
+  onPressUnlike = () => {
+    if (this.state.hasLiked === true) {
+      this.setState({
+        numberOfLikes: this.state.numberOfLikes - 1,
+        hasLiked: false,
+      });
+    }
+  };
+
   render() {
-    const { text, name, imageWidth, imageHeight, uid, image, audio, numberOfLikes} = this.props;
+    let { text, name, imageWidth, imageHeight, uid, image, audio, numberOfLikes} = this.props;
+
+    var hasLiked = this.state.hasLiked;
+    numberOfLikes = this.state.numberOfLikes;
 
     if (image)
     {
@@ -43,7 +68,7 @@ export default class Item extends React.Component {
             }}
             source={{ uri: image }}
           />
-          <Metadata name={name} description={text} numberOfLikes={numberOfLikes}/>
+          <Metadata component={this} hasLiked={hasLiked} name={name} description={text} numberOfLikes={numberOfLikes}/>
         </View>
       );
     }
@@ -52,7 +77,7 @@ export default class Item extends React.Component {
             <View style={[styles.border]}>
                 <HeaderNoImage name={name} />
                 <Player tracks={audio}/>
-                <Metadata name={name} description={text} numberOfLikes={numberOfLikes}/>
+                <Metadata component={this} hasLiked={hasLiked} name={name} description={text} numberOfLikes={numberOfLikes}/>
             </View>
         );
     }
@@ -61,18 +86,18 @@ export default class Item extends React.Component {
       return (
         <View style={[styles.border]}>
           <HeaderNoImage name={name} />
-          <Metadata name={name} description={text} numberOfLikes={numberOfLikes}/>
+          <Metadata component={this} hasLiked={hasLiked} name={name} description={text} numberOfLikes={numberOfLikes}/>
         </View>
       );
     }
   }
 }
 
-const Metadata = ({ name, description, numberOfLikes }) => (
+const Metadata = ({ component, hasLiked, name, description, numberOfLikes }) => (
   <View>
     <Text style={[styles.subtitle, styles.description_padding]}>{description}</Text>
     <LikeCountCommentCount numberOfLikes={numberOfLikes}/>
-    <IconBar/>
+    <IconBar component={component} hasLiked={hasLiked}/>
   </View>
 );
 
@@ -97,16 +122,38 @@ const Header = ({ name, image }) => (
   </View>
 );
 
-const Icon = ({ name }) => (
-  <Ionicons style={{ margin: 8 }} name={name} size={26} color="#808080" />
-);
+const Icon = ({ name, color }) => {
+  if (color) {
+    return <Ionicons style={{ margin: 8 }} name={name} size={26} color={color}/>
+  } else {
+    return <Ionicons style={{ margin: 8 }} name={name} size={26} color="#808080" />
+  }
+};
 
-const IconBar = () => (
+const IconBar = ( {component, hasLiked} ) => (
     <View style={styles.actions_row}>
-      <View style={styles.action_item}>
-        <Icon name="ios-thumbs-up" />
-        <Text style={styles.action_text}>Like</Text>
-      </View>
+      {
+        hasLiked === false &&
+        <TouchableOpacity
+          onPress={component.onPressLike}
+        >
+          <View style={styles.action_item}>
+            <Icon name="ios-thumbs-up" />
+            <Text style={styles.action_text}>Like</Text>
+          </View>
+        </TouchableOpacity>
+      }
+      {
+        hasLiked === true &&
+        <TouchableOpacity
+          onPress={component.onPressUnlike}
+        >
+          <View style={styles.action_item}>
+            <Icon name="ios-thumbs-up" color="#EF6C6C"/>
+            <Text style={styles.action_text_clicked}>Like</Text>
+          </View>
+        </TouchableOpacity>
+      }
       <View style={styles.action_item}>
         <Icon name="ios-chatboxes" />
         <Text style={styles.action_text}>Comment</Text>
@@ -125,7 +172,12 @@ const styles = StyleSheet.create({
   },
   action_text: { 
     fontWeight: '600',
-    fontSize: 12
+    fontSize: 12,
+  },
+  action_text_clicked: { 
+    fontWeight: '600',
+    fontSize: 12,
+    color: "#EF6C6C"
   },
   subtitle: {
     opacity: 0.8,
