@@ -21,7 +21,7 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const { text, name, imageWidth, imageHeight, uid, image, audio } = this.props;
+    const { text, name, imageWidth, imageHeight, uid, image, audio, numberOfLikes} = this.props;
 
     if (image)
     {
@@ -43,7 +43,7 @@ export default class Item extends React.Component {
             }}
             source={{ uri: image }}
           />
-          <Metadata name={name} description={text} />
+          <Metadata name={name} description={text} numberOfLikes={numberOfLikes}/>
         </View>
       );
     }
@@ -52,7 +52,7 @@ export default class Item extends React.Component {
             <View style={[styles.border]}>
                 <HeaderNoImage name={name} />
                 <Player tracks={audio}/>
-                <Metadata name={name} description={text} />
+                <Metadata name={name} description={text} numberOfLikes={numberOfLikes}/>
             </View>
         );
     }
@@ -61,23 +61,30 @@ export default class Item extends React.Component {
       return (
         <View style={[styles.border]}>
           <HeaderNoImage name={name} />
-          <Metadata name={name} description={text} />
+          <Metadata name={name} description={text} numberOfLikes={numberOfLikes}/>
         </View>
       );
     }
   }
 }
 
-const Metadata = ({ name, description }) => (
+const Metadata = ({ name, description, numberOfLikes }) => (
   <View>
     <Text style={[styles.subtitle, styles.description_padding]}>{description}</Text>
-    <IconBar />
+    <LikeCountCommentCount numberOfLikes={numberOfLikes}/>
+    <IconBar/>
+  </View>
+);
+
+const LikeCountCommentCount = ({ numberOfLikes }) => (
+  <View style={styles.like_count_comment_count_row}>
+    <Text style={styles.like_count_comment_count_text}>{numberOfLikes} Likes</Text>
   </View>
 );
 
 const HeaderNoImage = ({ name }) => (
   <View style={[styles.header_row, styles.header_padding]}>
-    <Text style={styles.text}>{name}</Text>
+    <Text style={styles.name_text}>{name}</Text>
   </View>
 );
 
@@ -85,20 +92,25 @@ const Header = ({ name, image }) => (
   <View style={[styles.header_row, styles.header_padding]}>
     <View style={styles.header_row}>
       <Image style={styles.avatar} source={image} />
-      <Text style={styles.text}>{name}</Text>
+      <Text style={styles.name_text}>{name}</Text>
     </View>
   </View>
 );
 
 const Icon = ({ name }) => (
-  <Ionicons style={{ marginRight: 8 }} name={name} size={26} color="#808080" />
+  <Ionicons style={{ margin: 8 }} name={name} size={26} color="#808080" />
 );
 
 const IconBar = () => (
     <View style={styles.actions_row}>
-      <Icon name="ios-thumbs-up" />
-      <Icon name="ios-chatboxes" />
-      <Icon name="ios-more" />
+      <View style={styles.action_item}>
+        <Icon name="ios-thumbs-up" />
+        <Text style={styles.action_text}>Like</Text>
+      </View>
+      <View style={styles.action_item}>
+        <Icon name="ios-chatboxes" />
+        <Text style={styles.action_text}>Comment</Text>
+      </View>
     </View>
 );
 
@@ -106,6 +118,14 @@ const styles = StyleSheet.create({
   text: { 
     fontWeight: '600',
     fontSize: 16
+  },
+  name_text: { 
+    fontWeight: '600',
+    fontSize: 20
+  },
+  action_text: { 
+    fontWeight: '600',
+    fontSize: 12
   },
   subtitle: {
     opacity: 0.8,
@@ -116,12 +136,36 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  like_count_comment_count_text: {
+    fontWeight: '400',
+    fontSize: 14,
+    opacity: 0.8,
+  },
+  like_count_comment_count_row: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingBottom: 10,
+    marginTop: 3,
+    borderTopWidth: 1,
+    borderColor: '#F1F1F1'
+  },
+  action_item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 12,
+    marginLeft: 12
+  },
   actions_row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingTop: 8,
-    paddingBottom: 15,
+    paddingBottom: 4,
+    // borderTopWidth: 1,
+    backgroundColor: '#F1F1F1'
   },
   header_padding: {
     paddingLeft: 12,
@@ -145,6 +189,7 @@ const styles = StyleSheet.create({
     marginRight: padding,
   },
   border: {
-    borderBottomWidth: 4,
+    borderBottomWidth: 10,
+    borderColor: '#D3D3D3'
   }
 });

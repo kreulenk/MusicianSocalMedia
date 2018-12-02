@@ -9,6 +9,10 @@ const firebase = require('firebase');
 // Required for side-effects
 require('firebase/firestore');
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
 const collectionName = 'soundmatch-c4d7e';
 
 class Fire {
@@ -46,6 +50,10 @@ class Fire {
 
           if (doc.exists) {
           const post = doc.data() || {};
+
+          if (!post.numberOfLikes) {
+            post.numberOfLikes = 0;
+          }
 
           // Reduce the name
           const user = post.user || {};
@@ -86,41 +94,28 @@ class Fire {
 
   post = async ({ name, text, image: imageUri, audio: audioURI }) => {
     try {
+      var postData = {
+        text,
+        uid: this.uid,
+        timestamp: this.timestamp,
+        user: getUserInfo(),
+        name: name,
+        numberOfLikes: getRandomInt(25)
+      };
+
       if (imageUri) {
         const { uri: reducedImage, width, height } = await shrinkImageAsync(
           imageUri,
         );
 
         const remoteUri = await this.uploadPhotoAsync(reducedImage);
-        this.collection.add({
-          text,
-          uid: this.uid,
-          timestamp: this.timestamp,
-          image: remoteUri,
-          user: getUserInfo(),
-          name: name,
-        });
+        postData.image = remoteUri;
       } else if(audioURI) { // If the user is trying to play an audio sample
         const remoteUri = await this.uploadAudioAsync(audioURI);
-        this.collection.add({
-            text,
-            uid: this.uid,
-            timestamp: this.timestamp,
-            audio: remoteUri,
-            user: getUserInfo(),
-            name: name,
-        })
+        postData.audio = remoteUri;
       }
-      else
-      {
-        this.collection.add({
-          text,
-          uid: this.uid,
-          timestamp: this.timestamp,
-          user: getUserInfo(),
-          name: name,
-        });
-      }
+
+      this.collection.add(postData);
     } catch ({ message }) {
       alert(message);
     }
