@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
   action_text: { 
     fontWeight: '600',
     fontSize: 12,
+    color: '#808080'
   },
   action_text_clicked: { 
     fontWeight: '600',
