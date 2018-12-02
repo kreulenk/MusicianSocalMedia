@@ -79,13 +79,19 @@ export default class SelectRecordScreen extends Component {
             try {
                 await soundObject.loadAsync({
                     uri: URI
+                    
                 });
                 //await soundObject.playAsync();
                 // Your sound is playing!
             } catch (error) {
                 // An error occurred!
             }
-          this.props.navigation.navigate('NewPost', { audio: URI });
+            var navigationProps = {
+              audio:  URI,
+              name: this.props.navigation.getParam('name')
+            };
+            console.log("name: " + this.props.navigation.getParam('name'))
+            this.props.navigation.navigate('NewPost', navigationProps);
         }
     }
   };
