@@ -18,6 +18,7 @@ import {
 import PropTypes from 'prop-types'
 
 import Posts from './Posts'
+import Suggestions from './Suggestions';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -50,10 +51,10 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     backgroundColor: '#EEE',
+    marginBottom: -10
   },
   tabContainer: {
-    flex: 1,
-    marginBottom: 12,
+    backgroundColor: 'white',
   },
   tabLabelNumber: {
     color: 'gray',
@@ -134,10 +135,10 @@ class Profile2 extends Component {
     tabs: {
       index: 0,
       routes: [
-        { key: '1', title: 'active', count: 31 },
-        { key: '2', title: 'like', count: 86 },
-        { key: '3', title: 'following', count: 95 },
-        { key: '4', title: 'followers', count: '1.3 K' },
+        { key: '1', title: 'suggestions', count: this.props.suggestions.length },
+        { key: '2', title: 'matches', count: 31 },
+        // { key: '3', title: 'following', count: 95 },
+        // { key: '4', title: 'followers', count: '1.3 K' },
       ],
     },
   }
@@ -168,15 +169,11 @@ class Profile2 extends Component {
   }
 
   _renderScene = ({ route: { key } }) => {
-    const { posts } = this.props
+    const { posts, suggestions } = this.props
     switch (key) {
       case '1':
-        return <Posts containerStyle={styles.sceneContainer} posts={posts} />
+        return <Suggestions containerStyle={styles.sceneContainer} suggestions={suggestions} />
       case '2':
-        return <Posts containerStyle={styles.sceneContainer} posts={posts} />
-      case '3':
-        return <Posts containerStyle={styles.sceneContainer} posts={posts} />
-      case '4':
         return <Posts containerStyle={styles.sceneContainer} posts={posts} />
       default:
         return <View />
@@ -242,7 +239,7 @@ class Profile2 extends Component {
           <View style={styles.cardContainer}>
             {this.renderContactHeader()}
             <TabViewAnimated
-              style={[styles.tabContainer, this.props.tabContainerStyle]}
+              style={[styles.tabContainer]}
               navigationState={this.state.tabs}
               renderScene={this._renderScene}
               renderPager={this._renderPager}
