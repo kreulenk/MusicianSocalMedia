@@ -51,14 +51,6 @@ const navigator = createBottomTabNavigator(
       },
     },
 
-    Player: {
-      screen: PlayScreen,
-      navigationOptions: {
-        tabBarIcon: tabBarIcon('play-circle-filled'),
-      },
-      tabBarLabel: 'Player'
-    },
-
     Chat: {
       screen: ChatScreen,
       navigationOptions: {
