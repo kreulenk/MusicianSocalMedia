@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     backgroundColor: 'white',
     paddingTop: 20,
+    paddingBottom: 20,
     borderBottomWidth: 12,
     borderColor: '#D3D3D3'
   },
@@ -49,11 +50,11 @@ const styles = StyleSheet.create({
     color: 'gray',
     fontSize: 12.5,
   },
-  suggestionRow: {
+  matchRow: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 0,
+    paddingBottom: 8,
     paddingLeft: 20,
     paddingRight: 28,
     paddingTop: 8,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  suggestionImage: {
+  matchImage: {
     backgroundColor: 'rgba(0, 0, 0, 0.075)',
     height: 200,
   },
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 7,
+    // marginBottom: 7,
   },
   subtitleText: {
     fontSize: 14,
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   }
 })
 
-class Suggestion extends Component {
+class Match extends Component {
   static propTypes = {
     containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     user: PropTypes.shape({
@@ -158,21 +159,21 @@ class Suggestion extends Component {
       )
     } else {
       return (
-        <SuggestionTemplate
+        <MatchTemplate
           containerStyle={this.props.containerStyle}
           user={this.props.user}
           hasAdded={this.state.hasAdded}
           component={this}
         >
-        </SuggestionTemplate>
+        </MatchTemplate>
       )
     }
   }
 };
 
-const SuggestionTemplate = ({ containerStyle, user, hasAdded, component }) => (
+const MatchTemplate = ({ containerStyle, user, hasAdded, component }) => (
   <View style={[styles.container, containerStyle]}>
-    <View style={styles.suggestionRow}>
+    <View style={styles.matchRow}>
       <View style={styles.headerRow}>
         <View style={styles.userImage}>
           <Avatar
@@ -188,27 +189,15 @@ const SuggestionTemplate = ({ containerStyle, user, hasAdded, component }) => (
           <Text>@{user.username}</Text>
         </View>
       </View>
-      {
-        hasAdded === false &&
-        <TouchableOpacity
-          onPress={component.onPressAdd}
-        >
-          <Icon name="person-add" color='#888' />
-        </TouchableOpacity>
-      }
-      {
-        hasAdded === true &&
-        <ActivityIndicator style={{width: 32, height: 32}} size='small' color='#888' />
-      }
     </View>
-    <View style={styles.bioRow}>
+    {/* <View style={styles.bioRow}>
       <Text style={styles.bioText}>{user.bio}</Text>
     </View>
     <View style={styles.infoRow}>
       <Text style={styles.wordTextLarge}>{user.matchesInCommon} matches in common</Text>
       <Text style={styles.wordText}>{toListString('Mutual Interests: ', user.interests)}</Text>
       <Text style={styles.wordText}>{toListString('Skills: ', user.skills)}</Text>
-    </View>
+    </View> */}
     {/* <View style={styles.infoRow}>
       <View style={styles.section}>
         <Text style={styles.subtitleText}>Mutual Interests:</Text>
@@ -232,4 +221,4 @@ const SuggestionTemplate = ({ containerStyle, user, hasAdded, component }) => (
   </View>
 );
 
-export default Suggestion
+export default Match
