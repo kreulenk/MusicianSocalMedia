@@ -18,7 +18,6 @@ export default class NewPostScreen extends React.Component {
             const image = navigation.getParam('image');
             const audio = navigation.getParam('audio');
             const name = navigation.getParam('name');
-            console.log("New Log", audio);
             if (text && image) {
               navigation.goBack();
               Fire.shared.post({ name, text: text.trim(), image });

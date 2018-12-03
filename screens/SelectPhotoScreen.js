@@ -56,7 +56,6 @@ export default class SelectPhotoScreen extends Component {
           image:  result.uri,
           name: this.props.navigation.getParam('name')
         };
-        console.log("name: " + this.props.navigation.getParam('name'))
         this.props.navigation.navigate('NewPost', navigationProps);
       }
     }

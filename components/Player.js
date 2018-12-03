@@ -5,7 +5,8 @@ import {
 } from 'react-native';
 import SeekBar from '../utils/SeekBar';
 import PlaybackControls from '../utils/PlaybackControls';
-import {Video} from 'expo';
+import Expo, {Video, Audio} from 'expo';
+
 
 export default class Player extends Component {
   constructor(props) {
@@ -23,7 +24,6 @@ export default class Player extends Component {
   }
 
   setDuration(data) {
-    // console.log(totalLength);
     this.setState({totalLength: Math.floor(data.duration)});
   }
 
@@ -73,12 +73,28 @@ export default class Player extends Component {
   //     }), 0);
   //   }
   // }
+    async onPressPlay() {
+        const track = this.props.tracks;
+        this.setState({shouldPlay: true, paused: false, currentPosition: 0});
+        let soundObject = new Audio.Sound();
+        console.log("please work", track);
+        try {
+            await soundObject.loadAsync({
+                uri: track
+
+            });
+            await soundObject.playAsync();
+            // Your sound is playing!
+        } catch (error) {
+            // An error occurred!
+            console.log(error);
+        }
+    }
 
 
 
   render() {
     const track = this.props.tracks;
-    console.log(track);
     const video = this.state.isChanging ? null : (
       <Video source={{uri: track}} // Can be a URL or a local file.
         shouldPlay={this.state.shouldPlay}
@@ -103,8 +119,7 @@ export default class Player extends Component {
           shuffleOn={this.state.shuffleOn}
           //forwardDisabled={this.state.selectedTrack === this.props.tracks.length - 1}
           onPressShuffle={() => this.setState({shuffleOn: !this.state.shuffleOn})}
-          onPressPlay={() => this.setState({shouldPlay: true,
-            paused: false})}
+          onPressPlay={() => this.onPressPlay()}
           onPressPause={() => this.setState({shouldPlay: false,
             paused: true})}
           onBack={this.onBack.bind(this)}

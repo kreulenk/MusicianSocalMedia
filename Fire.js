@@ -88,7 +88,7 @@ class Fire {
 
   // Upload Audio
   uploadAudioAsync = async uri => {
-      const path = `${collectionName}/${this.uid}/${uuid.v4()}.cat`;
+      const path = `${collectionName}/${this.uid}/${uuid.v4()}.caf`;
       return uploadAudio(uri, path);
   };
 

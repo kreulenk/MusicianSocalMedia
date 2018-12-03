@@ -39,6 +39,14 @@ export default class SelectRecordScreen extends Component {
 
     _takeRecording = async () => {
         Audio.setAudioModeAsync({
+            ios: {
+                outputFormat: Expo.Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC
+            },
+            android: {
+                outputFormat: Expo.Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4
+            },
+            extension: '.mp3',
+            outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEGLAYER1,
             allowsRecordingIOS: true,
             interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
             playsInSilentModeIOS: true,
@@ -52,7 +60,7 @@ export default class SelectRecordScreen extends Component {
         if (status){
             recording = new Audio.Recording();
             try {
-                await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+                await recording.prepareToRecordAsync(Expo.Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
                 await recording.startAsync(); //Starts the recording
                 this.setState({
                     isRecording: true
@@ -69,6 +77,7 @@ export default class SelectRecordScreen extends Component {
 
     if (status) {
         URI = recording.getURI();
+        console.log(URI);
         const result = await recording.stopAndUnloadAsync();
         if (!result.cancelled) {
             this.setState({
@@ -81,19 +90,20 @@ export default class SelectRecordScreen extends Component {
                     uri: URI
                     
                 });
-                //await soundObject.playAsync();
+                await soundObject.playAsync();
                 // Your sound is playing!
             } catch (error) {
                 // An error occurred!
             }
-            var navigationProps = {
-              audio:  URI,
-              name: this.props.navigation.getParam('name')
-            };
-            console.log("name: " + this.props.navigation.getParam('name'))
-            this.props.navigation.navigate('NewPost', navigationProps);
         }
     }
+  };
+  postRecording = async () => {
+      var navigationProps = {
+          audio:  URI,
+          name: this.props.navigation.getParam('name')
+      };
+      this.props.navigation.navigate('NewPost', navigationProps);
   };
 
   render() {
@@ -109,6 +119,7 @@ export default class SelectRecordScreen extends Component {
               !this.state.isRecording ? before : after
           }
           <Player tracks={URI} />
+          <Text onPress={this.postRecording} style={styles.text}>Post</Text>
       </View>
     );
   }
