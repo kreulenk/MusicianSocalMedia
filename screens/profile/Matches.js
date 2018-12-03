@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, ListView, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 
-import Suggestion from './Suggestion'
+import Match from './Match'
 
 const styles = StyleSheet.create({
   container: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  suggestionContainer: {
+  matchContainer: {
     // justifyContent: 'space-between',
     // marginBottom: 5,
     // marginLeft: 12,
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   },
 })
 
-class Suggestions extends Component {
+class Matches extends Component {
   static propTypes = {
     containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-    suggestions: PropTypes.arrayOf(
+    matches: PropTypes.arrayOf(
       PropTypes.shape({
         user: PropTypes.shape({
           name: PropTypes.string.isRequired,
@@ -43,9 +43,9 @@ class Suggestions extends Component {
   }
 
   state = {
-    suggestionDS: new ListView.DataSource({
+    matchDS: new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
-    }).cloneWithRows(this.props.suggestions),
+    }).cloneWithRows(this.props.matches),
   }
 
   render() {
@@ -55,13 +55,12 @@ class Suggestions extends Component {
           scrollEnabled={false}
           removeClippedSubviews={false}
           contentContainerStyle={[styles.container, this.props.containerStyle]}
-          dataSource={this.state.suggestionDS}
+          dataSource={this.state.matchDS}
           renderRow={e => {
             return (
-              <Suggestion
-                containerStyle={styles.suggestionContainer}
+              <Match
+                containerStyle={styles.matchContainer}
                 {...e}
-                onRemoveSuggestion={this.props.onRemoveSuggestion}
               />
             )
           }}
@@ -71,4 +70,4 @@ class Suggestions extends Component {
   }
 }
 
-export default Suggestions
+export default Matches

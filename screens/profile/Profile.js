@@ -17,7 +17,7 @@ import {
 } from 'react-native-tab-view'
 import PropTypes from 'prop-types'
 
-import Posts from './Posts'
+import Matches from './Matches'
 import Suggestions from './Suggestions';
 
 const styles = StyleSheet.create({
@@ -109,21 +109,6 @@ class Profile2 extends Component {
       PropTypes.object,
       PropTypes.number,
     ]),
-    posts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        words: PropTypes.string.isRequired,
-        sentence: PropTypes.string.isRequired,
-        paragraph: PropTypes.string.isRequired,
-        image: PropTypes.string,
-        user: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          username: PropTypes.string.isRequired,
-          avatar: PropTypes.string.isRequired,
-          email: PropTypes.string.isRequired,
-        }),
-      })
-    ).isRequired,
   }
 
   static defaultProps = {
@@ -136,14 +121,15 @@ class Profile2 extends Component {
       index: 0,
       routes: [
         { key: '1', title: 'suggestions', count: this.props.suggestions.length },
-        { key: '2', title: 'matches', count: 31 },
+        { key: '2', title: 'matches', count: this.props.matches.length },
         // { key: '3', title: 'following', count: 95 },
         // { key: '4', title: 'followers', count: '1.3 K' },
       ],
     },
   }
 
-  onSendMatchRequest = () => {
+  onRemoveSuggestion = () => {
+    var numberOfMatches = this.state.tabs.routes[1].count;
     var numberOfSuggestions = this.state.tabs.routes[0].count;
     numberOfSuggestions--;
     this.setState({
@@ -151,7 +137,7 @@ class Profile2 extends Component {
         index: 0,
         routes: [
           { key: '1', title: 'suggestions', count: numberOfSuggestions },
-          { key: '2', title: 'matches', count: 31 },
+          { key: '2', title: 'matches', count: numberOfMatches },
           // { key: '3', title: 'following', count: 95 },
           // { key: '4', title: 'followers', count: '1.3 K' },
         ],
@@ -185,14 +171,14 @@ class Profile2 extends Component {
   }
 
   _renderScene = ({ route: { key } }) => {
-    const { posts, suggestions } = this.props
+    const { posts, suggestions, matches } = this.props
     switch (key) {
       case '1':
         if (this.state.tabs.routes[0].count > 0) {
           return <Suggestions 
             containerStyle={styles.sceneContainer}
             suggestions={suggestions} 
-            onSendMatchRequest={this.onSendMatchRequest}
+            onRemoveSuggestion={this.onRemoveSuggestion}
           />
         } else {
           return <View style={[styles.userNameRow, {paddingTop: 100}]}>
@@ -200,7 +186,10 @@ class Profile2 extends Component {
           </View>
         }
       case '2':
-        return <Posts containerStyle={styles.sceneContainer} posts={posts} />
+        return <Matches 
+          containerStyle={styles.sceneContainer}
+          matches={matches} 
+        />
       default:
         return <View />
     }

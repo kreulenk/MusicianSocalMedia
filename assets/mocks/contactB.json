@@ -1,50 +1,47 @@
 {
   "name": "Katie Sowders",
   "username": "ssowders3",
-  "bio":
-    "Singer/Songwriter",
+  "bio": "Singer/Songwriter",
   "avatar": "https://images.unsplash.com/photo-1517230878791-4d28214057c2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=825368225cb2ad35a790254c35797181&auto=format&fit=crop&w=800&q=60",
   "avatarBackground":
     "https://orig00.deviantart.net/dcd7/f/2014/027/2/0/mountain_background_by_pukahuna-d73zlo5.png",
   "matches": [
     {
       "user": {
-        "name": "Metro Boomin'",
-        "username": "metro_want_some_more",
-        "bio": "Only if I trust ya...",
+        "name": "Ariana Grande",
+        "username": "thank_u_next",
+        "bio": "For all my exes",
         "matchesInCommon": 2,
         "interests": [
-          "Hip-Hop",
-          "Trap",
-          "New Wave"
+          "Pop",
+          "Vocalists"
         ],
         "skills": [
           "Production",
-          "DJing",
-          "Mixing",
-          "Executive Production"
+          "Composing Music",
+          "Singing",
+          "Dancing"
         ],
-        "avatar": "https://ssli.ulximg.com/image/740x493/gallery/1537192560_af5fddb4c06270cc3afb8c3f0dbea804.jpg/229bd3e21284d59d3ad7744a458716bb/1537192560_9880085f4bf52ea7eb681aeb350b448d.jpg"
+        "avatar": "https://peopledotcom.files.wordpress.com/2018/12/ariana-grande.jpg"
       }
     },
     {
       "user": {
-        "name": "Metro Boomin'",
-        "username": "metro_want_some_more",
-        "bio": "Only if I trust ya...",
+        "name": "Anderson .Paak",
+        "username": "Tints",
+        "bio": "Check out my new album Oxnard",
         "matchesInCommon": 2,
         "interests": [
           "Hip-Hop",
-          "Trap",
-          "New Wave"
+          "Rap",
+          "Vocalist"
         ],
         "skills": [
           "Production",
-          "DJing",
-          "Mixing",
-          "Executive Production"
+          "Singing",
+          "Mixing"
         ],
-        "avatar": "https://ssli.ulximg.com/image/740x493/gallery/1537192560_af5fddb4c06270cc3afb8c3f0dbea804.jpg/229bd3e21284d59d3ad7744a458716bb/1537192560_9880085f4bf52ea7eb681aeb350b448d.jpg"
+        "avatar": "https://www.billboard.com/files/styles/article_main_image/public/media/anderson-paak-2018-billboard-cr-Israel-Ramos-1548.jpg"
       }
     }
   ],

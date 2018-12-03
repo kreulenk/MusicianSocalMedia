@@ -63,7 +63,10 @@ export default class SelectPhotoScreen extends Component {
   };
 
   _takeRecording = async () => {
-    this.props.navigation.navigate('RecordAudio', {});
+    var navigationProps = {
+      name: this.props.navigation.getParam('name')
+    };
+    this.props.navigation.navigate('RecordAudio', navigationProps);
   };
 
   render() {

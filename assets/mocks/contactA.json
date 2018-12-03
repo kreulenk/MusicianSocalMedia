@@ -1,0 +1,106 @@
+{
+  "name": "Travis Scott",
+  "username": "mrjenner",
+  "bio": "Sicko Mode",
+  "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Travis_Scott_April_2017.jpg/220px-Travis_Scott_April_2017.jpg",
+  "avatarBackground":
+  "https://orig00.deviantart.net/dcd7/f/2014/027/2/0/mountain_background_by_pukahuna-d73zlo5.png",
+  "matches": [
+    {
+      "user": {
+        "name": "Post Malone",
+        "username": "better_now",
+        "bio": "You probably think that I am better now...",
+        "matchesInCommon": 2,
+        "interests": [
+          "Pop",
+          "Vocalists",
+          "Rap",
+          "Trap"
+        ],
+        "skills": [
+          "Production",
+          "Composing Music",
+          "Singing"
+        ],
+        "avatar": "https://pixel.nymag.com/imgs/daily/vulture/2018/07/25/25-post-malone-2.w700.h700.jpg"
+      }
+    },
+    {
+      "user": {
+        "name": "Halsey",
+        "username": "without_me",
+        "bio": "Singer/Songwriter",
+        "matchesInCommon": 2,
+        "interests": [
+          "Pop",
+          "Vocalist"
+        ],
+        "skills": [
+          "Production",
+          "Singing",
+          "Dancing"
+        ],
+        "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Halsey_LA_%283%29.PNG/220px-Halsey_LA_%283%29.PNG"
+      }
+    }
+  ],
+  "suggestions": [
+    {
+      "user": {
+        "name": "Metro Boomin'",
+        "username": "metro_want_some_more",
+        "bio": "Only if I trust ya...",
+        "matchesInCommon": 2,
+        "interests": [
+          "Hip-Hop",
+          "Trap",
+          "New Wave"
+        ],
+        "skills": [
+          "Production",
+          "DJing",
+          "Mixing",
+          "Executive Production"
+        ],
+        "avatar": "https://ssli.ulximg.com/image/740x493/gallery/1537192560_af5fddb4c06270cc3afb8c3f0dbea804.jpg/229bd3e21284d59d3ad7744a458716bb/1537192560_9880085f4bf52ea7eb681aeb350b448d.jpg"
+      }
+    },
+    {
+      "user": {
+        "name": "6ix9ine",
+        "username": "$$$$",
+        "bio": "I like to 69",
+        "matchesInCommon": 12,
+        "interests": [
+          "Trap",
+          "Hip-Hop",
+          "Synth"
+        ],
+        "skills": [
+          "Mixing",
+          "Production"
+        ],
+        "avatar": "https://static.spin.com/files/2018/02/GettyImages-897085320-1517680638-640x427.jpg"
+      }
+    },
+    {
+      "user": {
+        "name": "Swizz Beatz",
+        "username": "swizzzzz",
+        "bio": "Recently worked with Wayne. HMU.",
+        "matchesInCommon": 8,
+        "interests": [
+          "Trap",
+          "Hip-Hop"
+        ],
+        "skills": [
+          "Songwriting",
+          "Production"
+        ],
+        "avatar":
+        "https://iconn.me/wp-content/uploads/2018/04/swizz-beatz-1150x1039-e1520731992627-570x570.jpg"
+      }
+    }
+  ]
+}
