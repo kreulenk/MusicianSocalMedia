@@ -28,6 +28,25 @@
     },
     {
       "user": {
+        "name": "Katie Sowders",
+        "username": "ssowders3",
+        "bio": "For all my exes",
+        "matchesInCommon": 2,
+        "interests": [
+          "Pop",
+          "Vocalists"
+        ],
+        "skills": [
+          "Production",
+          "Composing Music",
+          "Singing",
+          "Dancing"
+        ],
+        "avatar": "https://images.unsplash.com/photo-1517230878791-4d28214057c2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=825368225cb2ad35a790254c35797181&auto=format&fit=crop&w=800&q=60"
+      }
+    },
+    {
+      "user": {
         "name": "Halsey",
         "username": "without_me",
         "bio": "Singer/Songwriter",
@@ -48,22 +67,21 @@
   "suggestions": [
     {
       "user": {
-        "name": "Metro Boomin'",
-        "username": "metro_want_some_more",
-        "bio": "Only if I trust ya...",
+        "name": "Anderson .Paak",
+        "username": "Tints",
+        "bio": "Check out my new album Oxnard",
         "matchesInCommon": 2,
         "interests": [
           "Hip-Hop",
-          "Trap",
-          "New Wave"
+          "Rap",
+          "Vocalist"
         ],
         "skills": [
           "Production",
-          "DJing",
-          "Mixing",
-          "Executive Production"
+          "Singing",
+          "Mixing"
         ],
-        "avatar": "https://ssli.ulximg.com/image/740x493/gallery/1537192560_af5fddb4c06270cc3afb8c3f0dbea804.jpg/229bd3e21284d59d3ad7744a458716bb/1537192560_9880085f4bf52ea7eb681aeb350b448d.jpg"
+        "avatar": "https://www.billboard.com/files/styles/article_main_image/public/media/anderson-paak-2018-billboard-cr-Israel-Ramos-1548.jpg"
       }
     },
     {

@@ -27,6 +27,25 @@
     },
     {
       "user": {
+        "name": "Travis Scott",
+        "username": "mrjenner",
+        "bio": "Sicko Mode",
+        "matchesInCommon": 2,
+        "interests": [
+          "Pop",
+          "Vocalists"
+        ],
+        "skills": [
+          "Production",
+          "Composing Music",
+          "Singing",
+          "Dancing"
+        ],
+        "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Travis_Scott_April_2017.jpg/220px-Travis_Scott_April_2017.jpg"
+      }
+    },
+    {
+      "user": {
         "name": "Anderson .Paak",
         "username": "Tints",
         "bio": "Check out my new album Oxnard",
@@ -68,39 +87,41 @@
     },
     {
       "user": {
-        "name": "Tay Keith",
-        "username": "f*&$emup93",
-        "bio": "Sicko Mode | Look Alive | Nonstop",
-        "matchesInCommon": 12,
+        "name": "Halsey",
+        "username": "without_me",
+        "bio": "Singer/Songwriter",
+        "matchesInCommon": 2,
         "interests": [
-          "Trap",
-          "Hip-Hop",
-          "Synth"
+          "Pop",
+          "Vocalist"
         ],
         "skills": [
-          "Mixing",
-          "Production"
+          "Production",
+          "Singing",
+          "Dancing"
         ],
-        "avatar": "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2018%2F02%2FTay-Keith.jpg?q=75&w=800&cbr=1&fit=max"
+        "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Halsey_LA_%283%29.PNG/220px-Halsey_LA_%283%29.PNG"
       }
     },
     {
       "user": {
-        "name": "Swizz Beatz",
-        "username": "swizzzzz",
-        "bio": "Recently worked with Wayne. HMU.",
-        "matchesInCommon": 8,
+        "name": "Post Malone",
+        "username": "better_now",
+        "bio": "You probably think that I am better now...",
+        "matchesInCommon": 2,
         "interests": [
-          "Trap",
-          "Hip-Hop"
+          "Pop",
+          "Vocalists",
+          "Rap",
+          "Trap"
         ],
         "skills": [
-          "Songwriting",
-          "Production"
+          "Production",
+          "Composing Music",
+          "Singing"
         ],
-        "avatar":
-          "https://iconn.me/wp-content/uploads/2018/04/swizz-beatz-1150x1039-e1520731992627-570x570.jpg"
-        }
+        "avatar": "https://pixel.nymag.com/imgs/daily/vulture/2018/07/25/25-post-malone-2.w700.h700.jpg"
+      }
     }
   ]
 }
