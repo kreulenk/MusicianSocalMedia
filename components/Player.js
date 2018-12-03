@@ -120,6 +120,7 @@ const styles = {
   container: {
     flex: 1,
     backgroundColor: 'white',
+    marginBottom: 20
   },
   audioElement: {
     height: 0,
