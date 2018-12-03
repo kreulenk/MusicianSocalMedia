@@ -21,7 +21,7 @@ export default class SurveyScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={styles.screen}>
                 <Text style = {styles.title}> Which description best describes you?</Text>
                 <MultipleChoice
                     options={[
@@ -30,8 +30,9 @@ export default class SurveyScreen extends React.Component {
                         'Instrumentalist',
                         'Label/Venue'
                         ]}
-                    maxSelectedOptions={3}
-                    />
+                    maxSelectedOptions={4}
+                    style = {styles.multiple_choice}
+                />
                 <Text style = {styles.title}> Who are you looking to collaborate with?</Text>
                 <MultipleChoice
                     options={[
@@ -40,7 +41,8 @@ export default class SurveyScreen extends React.Component {
                         'Instrumentalist',
                         'Label/Venue'
                     ]}
-                    maxSelectedOptions={3}
+                    maxSelectedOptions={4}
+                    style = {styles.multiple_choice}
                 />
                 <Text style = {styles.title}> What genre best describes your music?</Text>
                 <MultipleChoice
@@ -51,7 +53,8 @@ export default class SurveyScreen extends React.Component {
                         'Electronic',
                         'Folk'
                     ]}
-                    maxSelectedOptions={3}
+                    maxSelectedOptions={5}
+                    style = {styles.multiple_choice}
                 />
                 <TouchableOpacity onPress={this.onPress}>
                     <Text style={styles.buttonText}> Done!</Text>
@@ -64,18 +67,32 @@ export default class SurveyScreen extends React.Component {
 
 const offset = 24;
 const styles = StyleSheet.create({
+    screen: {
+        // flex: 1,
+        // flexDirection: 'column',
+        // // justifyContent: 'center',
+        // // alignItems: 'stretch',
+        marginTop: 40,
+        marginBottom: 40
+    },
     title: {
-        marginTop: offset,
+        marginTop: offset * 2,
+        marginBottom: offset / 2,
         marginLeft: offset,
+        marginRight: offset,
         fontSize: 18,
         fontWeight: 'bold',
         color: 'red',
     },
+    multiple_choice: {
+        marginLeft: offset * 1.3,
+        marginRight: offset * 1.3,
+    },
     buttonText: {
-        marginLeft: offset,
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
         color: 'red',
+        margin: offset
     }
 });

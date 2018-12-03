@@ -89,5 +89,63 @@
         "email": "Magali1664@gmail.com"
       }
     }
+  ],
+  "suggestions": [
+    {
+      "user": {
+        "name": "Metro Boomin'",
+        "username": "metro_want_some_more",
+        "bio": "Only if I trust ya...",
+        "matchesInCommon": 2,
+        "interests": [
+          "Hip-Hop",
+          "Trap",
+          "New Wave"
+        ],
+        "skills": [
+          "Production",
+          "DJing",
+          "Mixing",
+          "Executive Production"
+        ],
+        "avatar": "https://ssli.ulximg.com/image/740x493/gallery/1537192560_af5fddb4c06270cc3afb8c3f0dbea804.jpg/229bd3e21284d59d3ad7744a458716bb/1537192560_9880085f4bf52ea7eb681aeb350b448d.jpg"
+      }
+    },
+    {
+      "user": {
+        "name": "Tay Keith",
+        "username": "f*&$emup93",
+        "bio": "Sicko Mode | Look Alive | Nonstop",
+        "matchesInCommon": 12,
+        "interests": [
+          "Trap",
+          "Hip-Hop",
+          "Synth"
+        ],
+        "skills": [
+          "Mixing",
+          "Production"
+        ],
+        "avatar": "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2018%2F02%2FTay-Keith.jpg?q=75&w=800&cbr=1&fit=max"
+      }
+    },
+    {
+      "user": {
+        "name": "Swizz Beatz",
+        "username": "swizzzzz",
+        "bio": "Recently worked with Wayne. HMU.",
+        "matchesInCommon": 8,
+        "interests": [
+          "Trap",
+          "Hip-Hop"
+        ],
+        "skills": [
+          "Songwriting",
+          "Production"
+        ],
+        "avatar":
+          "https://iconn.me/wp-content/uploads/2018/04/swizz-beatz-1150x1039-e1520731992627-570x570.jpg"
+        }
+    }
   ]
 }

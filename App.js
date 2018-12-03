@@ -38,42 +38,32 @@ const navigator = createBottomTabNavigator(
       screen: FeedScreen,
       navigationOptions: {
         // Add a cool Material Icon for this screen
-        tabBarIcon: tabBarIcon('home'),
+        tabBarIcon: tabBarIcon('view-headline'),
+        tabBarLabel: 'Feed'
       },
     },
     // All the same stuff but for the Photo screen
     Photo: {
       screen: SelectPhotoScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('camera'),
-      },
-    },
-
-    Record: {
-      screen: SelectRecordScreen,
-      navigationOptions: {
-        tabBarIcon: tabBarIcon('mic'),
+        tabBarIcon: tabBarIcon('add-to-photos'),
+        tabBarLabel: 'Post'
       },
     },
 
     Chat: {
       screen: ChatScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('chat-bubble'),
-      },
-    },
-
-    Player: {
-      screen: PlayScreen,
-      navigationOptions: {
-        tabBarIcon: tabBarIcon('play-circle-filled'),
+        tabBarIcon: tabBarIcon('sms'),
+        tabBarLabel: 'Chat'
       },
     },
 
     Profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('perm-identity'),
+        tabBarIcon: tabBarIcon('account-circle'),
+        tabBarLabel: 'Profile'
       },
     },
 
@@ -81,31 +71,55 @@ const navigator = createBottomTabNavigator(
   {
     // We want to hide the labels and set a nice 2-tone tint system for our tabs
     tabBarOptions: {
-      showLabel: false,
+      showLabel: true,
       activeTintColor: 'red',
       inactiveTintColor: 'black',
+      style: {height: 80, paddingBottom: 24, paddingTop: 10}
     },
   },
 );
+
+const LandingHeader = (headerProps) => (
+  <View style={{}}>
+  </View>
+);
+
+const MainHeader = (headerProps) => (
+  <View style={{height: 40, backgroundColor: '#FFFFFF'}}>
+  </View>
+);
+
+const stackHeaderStyle = {marginTop: 28};
 
 // Create the navigator that pushes high-level screens like the `NewPost` screen.
 const stackNavigator = createStackNavigator(
   {
     Login: {
         screen: MainScreen,
-        navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+        navigationOptions: { header: LandingHeader },
     },
     Survey: {
       screen: SurveyScreen,
-      navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+      navigationOptions: { header: LandingHeader },
     },
     Main: {
       screen: navigator,
       // Set the title for our app when the tab bar screen is present
-      navigationOptions: { title: 'Soundmatch', headerTintColor: 'red' },
+      navigationOptions: { header: MainHeader },
+    },
+    Message: {
+      screen: ChatScreen,
+      navigationOptions: { headerStyle: stackHeaderStyle },
     },
     // This screen will not have a tab bar
-    NewPost: NewPostScreen,
+    NewPost: {
+      screen: NewPostScreen,
+      navigationOptions: { headerStyle: stackHeaderStyle }
+    },
+    RecordAudio: {
+      screen: SelectRecordScreen,
+      navigationOptions: { headerStyle: stackHeaderStyle }
+    },
   },
   {
     cardStyle: { backgroundColor: 'white' },

@@ -9,6 +9,10 @@ const firebase = require('firebase');
 // Required for side-effects
 require('firebase/firestore');
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
 const collectionName = 'soundmatch-c4d7e';
 
 class Fire {
@@ -47,12 +51,22 @@ class Fire {
           if (doc.exists) {
           const post = doc.data() || {};
 
+          if (!post.numberOfLikes) {
+            post.numberOfLikes = 0;
+          }
+
           // Reduce the name
           const user = post.user || {};
-          const name = user.deviceName; //Place where username would be placed
+          let name = post.name; //Place where username would be placed
+          if (!name) {
+            name = user.deviceName;
+          }
+          if (!name) {
+            name = 'Metro Boomin'
+          }
           const reduced = {
             key: doc.id,
-            name: (name || 'Secret Duck').trim(),
+            name: name.trim(),
             ...post,
           };
           data.push(reduced);
@@ -78,7 +92,7 @@ class Fire {
       return uploadAudio(uri, path);
   };
 
-  post = async ({ text, image: imageUri, audio: audioURI }) => {
+  post = async ({text, image: imageUri, audio: audioURI }) => {
     try {
       if (imageUri) {
         const { uri: reducedImage, width, height } = await shrinkImageAsync(
@@ -92,6 +106,7 @@ class Fire {
           timestamp: this.timestamp,
           image: remoteUri,
           user: getUserInfo(),
+          numberOfLikes: getRandomInt(25)
         });
       } else if(audioURI) { // If the user is trying to play an audio sample
         const remoteUri = await this.uploadAudioAsync(audioURI);
@@ -100,7 +115,8 @@ class Fire {
             uid: this.uid,
             timestamp: this.timestamp,
             audio: remoteUri,
-            user: getUserInfo()
+            user: getUserInfo(),
+            numberOfLikes: getRandomInt(25)
         })
       }
       else
@@ -173,3 +189,4 @@ class Fire {
 
 Fire.shared = new Fire();
 export default Fire;
+
