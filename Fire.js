@@ -92,42 +92,30 @@ class Fire {
       return uploadAudio(uri, path);
   };
 
-  post = async ({text, image: imageUri, audio: audioURI }) => {
+  post = async ({ name, text, image: imageUri, audio: audioURI }) => {
     try {
+      var postData = {
+        text,
+        uid: this.uid,
+        timestamp: this.timestamp,
+        user: getUserInfo(),
+        name: name,
+        numberOfLikes: getRandomInt(25)
+      };
+
       if (imageUri) {
         const { uri: reducedImage, width, height } = await shrinkImageAsync(
           imageUri,
         );
 
         const remoteUri = await this.uploadPhotoAsync(reducedImage);
-        this.collection.add({
-          text,
-          uid: this.uid,
-          timestamp: this.timestamp,
-          image: remoteUri,
-          user: getUserInfo(),
-          numberOfLikes: getRandomInt(25)
-        });
+        postData.image = remoteUri;
       } else if(audioURI) { // If the user is trying to play an audio sample
         const remoteUri = await this.uploadAudioAsync(audioURI);
-        this.collection.add({
-            text,
-            uid: this.uid,
-            timestamp: this.timestamp,
-            audio: remoteUri,
-            user: getUserInfo(),
-            numberOfLikes: getRandomInt(25)
-        })
+        postData.audio = remoteUri;
       }
-      else
-      {
-        this.collection.add({
-          text,
-          uid: this.uid,
-          timestamp: this.timestamp,
-          user: getUserInfo(),
-        });
-      }
+
+      this.collection.add(postData);
     } catch ({ message }) {
       alert(message);
     }
@@ -189,4 +177,3 @@ class Fire {
 
 Fire.shared = new Fire();
 export default Fire;
-
