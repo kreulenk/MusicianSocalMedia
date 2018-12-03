@@ -1,10 +1,30 @@
-import React from 'react'
-import { Dimensions, Image, View, Text, StyleSheet, FlatList } from 'react-native'
+import React, { Component } from 'react'
+import { Dimensions, Image, View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import PropTypes from 'prop-types'
+import { MaterialIcons } from '@expo/vector-icons';
+
+const Icon = ({ name, color }) => {
+  if (color) {
+    return <MaterialIcons
+      style={{ backgroundColor: 'transparent'}}
+      name={name}
+      color={color}
+      size={32}
+    />
+  } else {
+    return <MaterialIcons
+      style={{ backgroundColor: 'transparent'}}
+      name={name}
+      color="#808080"
+      size={32}
+    />
+  }
+};
 
 var interestCount = 0;
 var skillCount = 0;
+var hasAdded = false;
 
 var toListString = function (header, items) {
   var listString = header;
@@ -32,11 +52,16 @@ const styles = StyleSheet.create({
   suggestionRow: {
     alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingBottom: 0,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: 20,
+    paddingRight: 28,
     paddingTop: 8,
     width: Dimensions.get('window').width * 1,
+  },
+  headerRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   suggestionImage: {
     backgroundColor: 'rgba(0, 0, 0, 0.075)',
@@ -66,7 +91,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 8,
+    marginBottom: 7,
   },
   subtitleText: {
     fontSize: 14,
@@ -94,22 +119,87 @@ const styles = StyleSheet.create({
   }
 })
 
-const Suggestion = ({ containerStyle, user }) => (
+class Suggestion extends Component {
+  static propTypes = {
+    containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      bio: PropTypes.string.isRequired,
+      matchesInCommon: PropTypes.number.isRequired,
+      interests: PropTypes.arrayOf(PropTypes.string).isRequired,
+      skills: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+  }
+
+  static defaultProps = {
+    containerStyle: {},
+  }
+
+  state = {
+    hasAdded: false,
+    hasExpired: false
+  }
+
+  onPressAdd = () => {
+    this.setState({hasAdded: true});
+    setTimeout(() => {
+      this.setState({hasExpired: true});
+      this.props.onSendMatchRequest();
+    }, 1000);
+  }
+
+  render() {
+    if (this.state.hasExpired) {
+      return (
+        <View>
+        </View>
+      )
+    } else {
+      return (
+        <SuggestionTemplate
+          containerStyle={this.props.containerStyle}
+          user={this.props.user}
+          hasAdded={this.state.hasAdded}
+          component={this}
+        >
+        </SuggestionTemplate>
+      )
+    }
+  }
+};
+
+const SuggestionTemplate = ({ containerStyle, user, hasAdded, component }) => (
   <View style={[styles.container, containerStyle]}>
     <View style={styles.suggestionRow}>
-      <View style={styles.userImage}>
-        <Avatar
-          rounded
-          size="medium"
-          source={{
-            uri: user.avatar,
-          }}
-        />
+      <View style={styles.headerRow}>
+        <View style={styles.userImage}>
+          <Avatar
+            rounded
+            size="medium"
+            source={{
+              uri: user.avatar,
+            }}
+          />
+        </View>
+        <View>
+          <Text style={styles.nameText}>{user.name}</Text>
+          <Text>@{user.username}</Text>
+        </View>
       </View>
-      <View>
-        <Text style={styles.nameText}>{user.name}</Text>
-        <Text>@{user.username}</Text>
-      </View>
+      {
+        hasAdded === false &&
+        <TouchableOpacity
+          onPress={component.onPressAdd}
+        >
+          <Icon name="person-add" color='#888' />
+        </TouchableOpacity>
+      }
+      {
+        hasAdded === true &&
+        <ActivityIndicator style={{width: 32, height: 32}} size='small' color='#888' />
+      }
     </View>
     <View style={styles.bioRow}>
       <Text style={styles.bioText}>{user.bio}</Text>
@@ -140,23 +230,6 @@ const Suggestion = ({ containerStyle, user }) => (
       </View>
     </View> */}
   </View>
-)
-
-Suggestion.propTypes = {
-  containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    bio: PropTypes.string.isRequired,
-    matchesInCommon: PropTypes.number.isRequired,
-    interests: PropTypes.arrayOf(PropTypes.string).isRequired,
-    skills: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
-}
-
-Suggestion.defaultProps = {
-  containerStyle: {},
-}
+);
 
 export default Suggestion

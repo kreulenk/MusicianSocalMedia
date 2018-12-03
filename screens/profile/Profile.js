@@ -143,6 +143,22 @@ class Profile2 extends Component {
     },
   }
 
+  onSendMatchRequest = () => {
+    var numberOfSuggestions = this.state.tabs.routes[0].count;
+    numberOfSuggestions--;
+    this.setState({
+      tabs: {
+        index: 0,
+        routes: [
+          { key: '1', title: 'suggestions', count: numberOfSuggestions },
+          { key: '2', title: 'matches', count: 31 },
+          // { key: '3', title: 'following', count: 95 },
+          // { key: '4', title: 'followers', count: '1.3 K' },
+        ],
+      }
+    })
+  }
+
   onPressPlace = () => {
     console.log('place')
   }
@@ -172,7 +188,17 @@ class Profile2 extends Component {
     const { posts, suggestions } = this.props
     switch (key) {
       case '1':
-        return <Suggestions containerStyle={styles.sceneContainer} suggestions={suggestions} />
+        if (this.state.tabs.routes[0].count > 0) {
+          return <Suggestions 
+            containerStyle={styles.sceneContainer}
+            suggestions={suggestions} 
+            onSendMatchRequest={this.onSendMatchRequest}
+          />
+        } else {
+          return <View style={[styles.userNameRow, {paddingTop: 100}]}>
+            <Text style={styles.userNameText}>No suggestions at this time.</Text>
+          </View>
+        }
       case '2':
         return <Posts containerStyle={styles.sceneContainer} posts={posts} />
       default:

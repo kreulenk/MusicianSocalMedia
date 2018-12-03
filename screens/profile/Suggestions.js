@@ -61,6 +61,7 @@ class Suggestions extends Component {
               <Suggestion
                 containerStyle={styles.suggestionContainer}
                 {...e}
+                onSendMatchRequest={this.props.onSendMatchRequest}
               />
             )
           }}
