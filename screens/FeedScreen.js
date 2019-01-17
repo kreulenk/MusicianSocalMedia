@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+const firebase = require('firebase');
 import React, { Component } from 'react';
 import { LayoutAnimation, RefreshControl } from 'react-native';
 import seekBar from '../utils/SeekBar';
