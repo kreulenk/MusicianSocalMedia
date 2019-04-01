@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     padding: 0,
     borderWidth: 0,
   },
-})
+});
 
 class Posts extends Component {
   static propTypes = {
@@ -40,17 +40,17 @@ class Posts extends Component {
         }),
       })
     ).isRequired,
-  }
+  };
 
   static defaultProps = {
     containerStyle: {},
-  }
+  };
 
   state = {
     postDS: new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     }).cloneWithRows(this.props.posts),
-  }
+  };
 
   render() {
     return (

@@ -13,14 +13,12 @@ import {
 } from 'react-navigation';
 
 import tabBarIcon from './utils/tabBarIcon';
-import seekBar from './utils/SeekBar';
-import playbackControls from './utils/PlaybackControls';
 // Import the screens
 import FeedScreen from './screens/FeedScreen';
 import NewPostScreen from './screens/NewPostScreen';
 import SelectPhotoScreen from './screens/SelectPhotoScreen';
 import SelectRecordScreen from './screens/SelectRecordScreen';
-import ChatScreen from './screens/ChatScreen';
+import DiscoverScreen from './screens/DiscoverScreen';
 import MainScreen from './screens/MainScreen';
 
 import SurveyScreen from './screens/SurveyScreen';
@@ -28,6 +26,17 @@ import SurveyScreen from './screens/SurveyScreen';
 import PlayScreen from './screens/PlayScreen';
 import ProfileScreen from './screens/profile';
 
+const LandingHeader = (headerProps) => (
+    <View style={{}}>
+        <Text>Tutti</Text>
+    </View>
+);
+
+const MainHeader = (headerProps) => (
+    <View style={{height: 40, backgroundColor: '#FFFFFF'}}>
+        <Text>Tutti</Text>
+    </View>
+);
 
 // Create our main tab navigator for moving between the Feed and Photo screens
 const navigator = createBottomTabNavigator(
@@ -39,7 +48,7 @@ const navigator = createBottomTabNavigator(
       navigationOptions: {
         // Add a cool Material Icon for this screen
         tabBarIcon: tabBarIcon('view-headline'),
-        tabBarLabel: 'Feed'
+        tabBarLabel: 'Feed',
       },
     },
     // All the same stuff but for the Photo screen
@@ -51,11 +60,11 @@ const navigator = createBottomTabNavigator(
       },
     },
 
-    Chat: {
-      screen: ChatScreen,
+    Discover: {
+      screen: DiscoverScreen,
       navigationOptions: {
-        tabBarIcon: tabBarIcon('sms'),
-        tabBarLabel: 'Chat'
+        tabBarIcon: tabBarIcon('public'),
+        tabBarLabel: 'Discover'
       },
     },
 
@@ -72,22 +81,13 @@ const navigator = createBottomTabNavigator(
     // We want to hide the labels and set a nice 2-tone tint system for our tabs
     tabBarOptions: {
       showLabel: true,
-      activeTintColor: 'red',
+      activeTintColor: 'purple',
       inactiveTintColor: 'black',
       style: {height: 80, paddingBottom: 24, paddingTop: 10}
     },
   },
 );
 
-const LandingHeader = (headerProps) => (
-  <View style={{}}>
-  </View>
-);
-
-const MainHeader = (headerProps) => (
-  <View style={{height: 40, backgroundColor: '#FFFFFF'}}>
-  </View>
-);
 
 const stackHeaderStyle = {marginTop: 28};
 
@@ -108,7 +108,7 @@ const stackNavigator = createStackNavigator(
       navigationOptions: { header: MainHeader },
     },
     Message: {
-      screen: ChatScreen,
+      screen: DiscoverScreen,
       navigationOptions: { headerStyle: stackHeaderStyle },
     },
     // This screen will not have a tab bar
@@ -125,6 +125,7 @@ const stackNavigator = createStackNavigator(
     cardStyle: { backgroundColor: 'white' },
   },
 );
+
 
 // Export it as the root component
 export default stackNavigator;

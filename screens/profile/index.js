@@ -3,6 +3,7 @@ import Profile from './Profile';
 import contact from '../../assets/mocks/contact.json'
 import contactA from '../../assets/mocks/contactA.json'
 import contactB from '../../assets/mocks/contactB.json'
+import {Text, View} from "react-native";
 
 var contacts = [];
 contacts.push(JSON.parse(JSON.stringify(contact)));
@@ -25,7 +26,10 @@ export default class extends React.Component {
     }
 
     return (
-      <Profile {...personalizedContactData} />
+        <View>
+          <Text style={{fontSize: 40, fontWeight: 'bold', textAlign: 'center', color: 'purple', fontFamily: 'SnellRoundhand-Bold', height: 45}}>tutti</Text>
+          <Profile {...personalizedContactData} />
+        </View>
     );
   }
 }

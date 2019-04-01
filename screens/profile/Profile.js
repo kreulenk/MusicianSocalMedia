@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
+const firebase = require('firebase');
+
 import {
-  Animated,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
+    Animated,
+    Image,
+    Platform, RefreshControl,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View,
 } from 'react-native'
 import { Icon } from 'react-native-elements'
 import {
@@ -16,9 +18,12 @@ import {
   TabViewPagerPan,
 } from 'react-native-tab-view'
 import PropTypes from 'prop-types'
-
 import Matches from './Matches'
 import Suggestions from './Suggestions';
+import List from "../../components/List";
+import Fire from "../../Fire";
+
+const PAGE_SIZE = 5;
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -109,12 +114,12 @@ class Profile2 extends Component {
       PropTypes.object,
       PropTypes.number,
     ]),
-  }
+  };
 
   static defaultProps = {
     containerStyle: {},
     tabContainerStyle: {},
-  }
+  };
 
   state = {
     tabs: {
@@ -126,7 +131,25 @@ class Profile2 extends Component {
         // { key: '4', title: 'followers', count: '1.3 K' },
       ],
     },
-  }
+      loading: false,
+      posts: [],
+      data: {},
+  };
+
+    componentDidMount() {
+        // Check if we are signed in...
+        if (Fire.shared.uid) {
+            // If we are, then we can get the first 5 posts
+            this.makeRemoteRequest();
+        } else {
+            // If we aren't then we should just start observing changes. This will be called when the user signs in
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    this.makeRemoteRequest();
+                }
+            });
+        }
+    }
 
   onRemoveSuggestion = () => {
     var numberOfMatches = this.state.tabs.routes[1].count;
@@ -143,11 +166,11 @@ class Profile2 extends Component {
         ],
       }
     })
-  }
+  };
 
   onPressPlace = () => {
     console.log('place')
-  }
+  };
 
   _handleIndexChange = index => {
     this.setState({
@@ -156,7 +179,7 @@ class Profile2 extends Component {
         index,
       },
     })
-  }
+  };
 
   _renderHeader = props => {
     return (
@@ -168,7 +191,7 @@ class Profile2 extends Component {
         style={styles.tabBar}
       />
     )
-  }
+  };
 
   _renderScene = ({ route: { key } }) => {
     const { posts, suggestions, matches } = this.props
@@ -196,7 +219,7 @@ class Profile2 extends Component {
   }
 
   _renderLabel = props => ({ route, index }) => {
-    const inputRange = props.navigationState.routes.map((x, i) => i)
+    const inputRange = props.navigationState.routes.map((x, i) => i);
     const outputRange = inputRange.map(
       inputIndex => (inputIndex === index ? 'black' : 'gray')
     )
@@ -215,7 +238,7 @@ class Profile2 extends Component {
         </Animated.Text>
       </View>
     )
-  }
+  };
 
   _renderPager = props => {
     return Platform.OS === 'ios' ? (
@@ -223,10 +246,10 @@ class Profile2 extends Component {
     ) : (
       <TabViewPagerPan {...props} />
     )
-  }
+  };
 
   renderContactHeader = () => {
-    const { avatar, name, bio } = this.props
+    const { avatar, name, bio } = this.props;
     return (
       <View style={styles.headerContainer}>
         <View style={styles.userRow}>
@@ -245,7 +268,53 @@ class Profile2 extends Component {
         </View>
       </View>
     )
-  }
+  };
+
+    // Append the item to our states `data` prop
+    addPosts = posts => {
+        this.setState(previousState => {
+            let data = {
+                ...previousState.data,
+                ...posts,
+            };
+            return {
+                data,
+                // Sort the data by timestamp
+                posts: Object.values(data).sort((a, b) => a.timestamp < b.timestamp),
+            };
+        });
+    };
+
+    // Call our database and ask for a subset of the user posts
+    makeRemoteRequest = async lastKey => {
+        // If we are currently getting posts, then bail out..
+        if (this.state.loading) {
+            return;
+        }
+        this.setState({ loading: true });
+
+        // The data prop will be an array of posts, the cursor will be used for pagination.
+        const { data, cursor } = await Fire.shared.getPaged({
+            size: PAGE_SIZE,
+            start: lastKey,
+        });
+
+        this.lastKnownKey = cursor;
+        // Iteratively add posts
+        let posts = {};
+        for (let child of data) {
+            console.log(child);
+            posts[child.key] = child;
+        }
+        this.addPosts(posts);
+
+        // Finish loading, this will stop the refreshing animation.
+        this.setState({ loading: false });
+    };
+
+    // Because we want to get the most recent items, don't pass the cursor back.
+    // This will make the data base pull the most recent items.
+    _onRefresh = () => this.makeRemoteRequest();
 
   render() {
     return (
@@ -253,14 +322,16 @@ class Profile2 extends Component {
         <View style={[styles.container, this.props.containerStyle]}>
           <View style={styles.cardContainer}>
             {this.renderContactHeader()}
-            <TabViewAnimated
-              style={[styles.tabContainer]}
-              navigationState={this.state.tabs}
-              renderScene={this._renderScene}
-              renderPager={this._renderPager}
-              renderHeader={this._renderHeader}
-              onIndexChange={this._handleIndexChange}
-            />
+              <List
+                  refreshControl={
+                      <RefreshControl
+                          refreshing={this.state.loading}
+                          onRefresh={this._onRefresh}
+                      />
+                  }
+                  onPressFooter={this.onPressFooter}
+                  data={this.state.posts}
+              />
           </View>
         </View>
       </ScrollView>

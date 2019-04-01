@@ -1,6 +1,6 @@
-const firebase = require('firebase');
+import firebase from 'firebase';
 import React, { Component } from 'react';
-import { LayoutAnimation, RefreshControl } from 'react-native';
+import {LayoutAnimation, RefreshControl, StyleSheet, Text, View} from 'react-native';
 import seekBar from '../utils/SeekBar';
 import playbackControls from '../utils/PlaybackControls';
 import List from '../components/List';
@@ -48,29 +48,29 @@ export default class FeedScreen extends Component {
 
   // Call our database and ask for a subset of the user posts
   makeRemoteRequest = async lastKey => {
-    // If we are currently getting posts, then bail out..
-    if (this.state.loading) {
-      return;
-    }
-    this.setState({ loading: true });
+        // If we are currently getting posts, then bail out..
+        if (this.state.loading) {
+            return;
+        }
+        this.setState({ loading: true });
 
-    // The data prop will be an array of posts, the cursor will be used for pagination.
-    const { data, cursor } = await Fire.shared.getPaged({
-      size: PAGE_SIZE,
-      start: lastKey,
-    });
+        // The data prop will be an array of posts, the cursor will be used for pagination.
+        const { data, cursor } = await Fire.shared.getPaged({
+            size: PAGE_SIZE,
+            start: lastKey,
+        });
 
-    this.lastKnownKey = cursor;
-    // Iteratively add posts
-    let posts = {};
-    for (let child of data) {
-      posts[child.key] = child;
-    }
-    this.addPosts(posts);
+        this.lastKnownKey = cursor;
+        // Iteratively add posts
+        let posts = {};
+        for (let child of data) {
+            posts[child.key] = child;
+        }
+        this.addPosts(posts);
 
-    // Finish loading, this will stop the refreshing animation.
-    this.setState({ loading: false });
-  };
+        // Finish loading, this will stop the refreshing animation.
+        this.setState({ loading: false });
+    };
 
   // Because we want to get the most recent items, don't pass the cursor back.
   // This will make the data base pull the most recent items.
@@ -83,6 +83,8 @@ export default class FeedScreen extends Component {
     // Let's make everything purrty by calling this method which animates layout changes.
     LayoutAnimation.easeInEaseOut();
     return (
+        <View>
+            <Text style={{fontSize: 40, fontWeight: 'bold', textAlign: 'center', color: 'purple', fontFamily: 'SnellRoundhand-Bold', height: 45}}>tutti</Text>
       <List
         refreshControl={
           <RefreshControl
@@ -93,6 +95,7 @@ export default class FeedScreen extends Component {
         onPressFooter={this.onPressFooter}
         data={this.state.posts}
       />
-    );
+        </View>
+    )
   }
 }

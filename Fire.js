@@ -5,13 +5,17 @@ import shrinkImageAsync from './utils/shrinkImageAsync';
 import uploadPhoto from './utils/uploadPhoto';
 import uploadAudio from './utils/uploadAudio'
 
+import { GoogleSignin } from 'react-native-google-signin';
+
+
 const firebase = require('firebase');
 // Required for side-effects
 require('firebase/firestore');
 
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
-};
+}
 
 const collectionName = 'soundmatch-c4d7e';
 
@@ -25,18 +29,24 @@ class Fire {
       storageBucket: "soundmatch-c4d7e.appspot.com",
       messagingSenderId: "249268608379"
     });
-    // Some nonsense...
-    firebase.firestore().settings({ timestampsInSnapshots: true });
-
-    // Listen for auth
-    firebase.auth().onAuthStateChanged(async user => {
-      if (!user) {
-        await firebase.auth().signInAnonymously();
-      }
-    });
   }
 
-  // Download Data
+    handleLogin = (username, password) => {
+        firebase.auth().signOut().then(function() {
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(username, password)
+                .catch(() => {
+                    return false;
+                });
+        }).catch(function(error) {
+            console.log('fail done');
+        });
+    };
+
+
+
+    // Download Data
   getPaged = async ({ size, start }) => {
     let ref = this.collection.orderBy('timestamp', 'desc').limit(size);
     try {
@@ -79,7 +89,6 @@ class Fire {
       alert(message);
     }
   };
-
   // Upload Photo
   uploadPhotoAsync = async uri => {
     const path = `${collectionName}/${this.uid}/${uuid.v4()}.jpg`;
@@ -167,13 +176,32 @@ class Fire {
     return firebase.firestore().collection(collectionName);
   }
 
-  get uid() {
+  uid = () => {
     return (firebase.auth().currentUser || {}).uid;
-  }
+  };
+
   get timestamp() {
     return Date.now();
   }
 }
+
+export const googleLogin = async () => {
+    try {
+        // Add any configuration settings here:
+        await GoogleSignin.configure();
+
+        const data = await GoogleSignin.signIn();
+
+        // create a new firebase credential with the token
+        const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
+        // login with credential
+        const currentUser = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
+
+        console.info(JSON.stringify(currentUser.user.toJSON()));
+    } catch (e) {
+        console.error(e);
+    }
+};
 
 Fire.shared = new Fire();
 export default Fire;
