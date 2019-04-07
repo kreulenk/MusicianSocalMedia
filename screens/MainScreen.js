@@ -1,5 +1,5 @@
 import React from 'react';
-import Fire, {googleLogin} from '../Fire';
+import Fire from '../Fire';
 import {
   StyleSheet,
   Text,
@@ -14,21 +14,20 @@ class Main extends React.Component {
   };
 
   state = {
-    name: 'kreulenk@gmail.com',
+    name: 'maggie.hunt96@gmail.com',
     password: 'maggie',
     error: '',
   };
 
 
   onPressSignIn = () => {
-      // console.log("first", Fire.shared.uid());
-      // Fire.shared.handleLogin(this.state.name, this.state.password);
-      //
-      googleLogin().then(console.log("dine"));
-      // if (Fire.shared.uid()) {
-      //     console.log(Fire.shared.uid());
-      //     this.props.navigation.navigate('Main', { name: this.state.name });
-      // }
+      console.log("first", Fire.shared.uid());
+      Fire.shared.handleLogin(this.state.name, this.state.password);
+
+      if (Fire.shared.uid()) {
+          console.log(Fire.shared.uid());
+          this.props.navigation.navigate('Main', { name: this.state.name });
+      }
   };
 
   onPressSignUp = () => {
